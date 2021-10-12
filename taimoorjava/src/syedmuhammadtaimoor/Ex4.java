@@ -5,7 +5,7 @@ import java.util.Scanner;
 class Online_Library
 {
     String []list_of_books = new String[100];
-    Online_Library()
+    public  Online_Library()
     {
        list_of_books[0] = "Harry Potter and The Prisoner of Azkaban";
        list_of_books[1] = "Harry Potter and The Sorcerer Stone";

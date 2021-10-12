@@ -11,6 +11,9 @@ public class date_and_time {
         Date d = new Date();
         //System.out.println(d);
         System.out.println(d.getDate());
+        System.out.println(d.getMonth());
+        System.out.println(d.getYear() + 1900);
+
 
     }
 }

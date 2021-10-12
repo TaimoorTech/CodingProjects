@@ -1,5 +1,6 @@
 package syedmuhammadtaimoor;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -38,9 +39,11 @@ public class Advance_Java_Practice_Set_1 {
 //        System.out.println(c.get(Calendar.HOUR) + " : " + c.get(Calendar.MINUTE) + " : " + c.get(Calendar.SECOND));
 
         // Problem 4
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH : mm : ss");
-//        LocalTime t = LocalTime.now();
-//        System.out.println(t.format(dtf));
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d : M : u");
+      LocalDate d = LocalDate.now();
+      System.out.println(d.format(dtf));
+      LocalTime t = LocalTime.now();
+      System.out.println(t.format(dtf));
 
 
         // Problem 5
