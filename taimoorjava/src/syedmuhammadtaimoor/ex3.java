@@ -1,5 +1,6 @@
 package syedmuhammadtaimoor;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ex3 {
@@ -47,13 +48,37 @@ public class ex3 {
 //        else if (web.endsWith(".org")){
 //            System.out.println("It is an Organizational Website");
 //        }
-        Scanner scan = new Scanner(System.in);
-        int num = scan.nextInt();
-        double doub = scan.nextDouble();
-        String str = scan.nextLine();
-        System.out.println("String: " + str);
-        System.out.println("Double: " + doub);
-        System.out.println("Int: " + num);
+//        Scanner scan = new Scanner(System.in);
+//        int num = scan.nextInt();
+//        double doub = scan.nextDouble();
+//        String str = scan.nextLine();
+//        System.out.println("String: " + str);
+//        System.out.println("Double: " + doub);
+//        System.out.println("Int: " + num);
+        Scanner sc = new Scanner(System.in);
+        int a;
+        int b;
+        int n;
+        int q = sc.nextInt();
+        int result = 0;
+        sc.nextLine();
+        for (int k=0; k<q; k++){
+            String str = sc.nextLine();
+            String []arr = str.split(" ");
+            System.out.println(Arrays.toString(arr));
+            a = Integer.parseInt(arr[0]);
+            b = Integer.parseInt(arr[1]);
+            n = Integer.parseInt(arr[2]);
+            for (int i=0; i<n; i++){
+                result=0;
+                for (int j=0; j<=i; j++){
+                    result+=(Math.pow(2,j)*b);
+                }
+                result+=a;
+                System.out.print(result + " ");
+            }
+            System.out.print("\n");
+        }
 
     }
 
