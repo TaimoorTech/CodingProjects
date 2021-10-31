@@ -1,4 +1,8 @@
 package syedmuhammadtaimoor;
+import java.text.NumberFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class java_newpractices {
@@ -50,7 +54,38 @@ public class java_newpractices {
 //
 //        }
 
-        String c = "";
-        System.out.println(c.getClass().getName());
+//        String c = "";
+//        System.out.println(c.getClass().getName());
+//        int year = 2021;
+//        int month = 10;
+//        int date = 23;
+//        LocalDate c =  LocalDate.of(year, month, date);
+//        String day = String.valueOf(c.getDayOfWeek());
+//        System.out.println(day.getClass().getName());
+
+        // NumberFormat class
+        Scanner sc = new Scanner(System.in);
+//        double num = sc.nextDouble();
+//        NumberFormat dol = NumberFormat.getCurrencyInstance(Locale.US);
+//        NumberFormat ind = NumberFormat.getCurrencyInstance(Locale.US);
+//        NumberFormat chin = NumberFormat.getCurrencyInstance(Locale.CHINA);
+//        NumberFormat fra = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+//        String indian = ind.format(num).replace("$", "Rs.");
+//        System.out.println("US:" + dol.format(num));
+//        System.out.println("India:" + indian);
+//        System.out.println("China:" + chin.format(num));
+//        System.out.println("France:" + fra.format(num));
+//        Locale l = new Locale();
+        String s1 = sc.next();
+        String s2 = sc.next();
+        System.out.println(s1.length() + s2.length());
+        if(s1.compareTo(s2) > 0){
+            System.out.println("Yes");
+        }
+        else if(s1.compareTo(s2) < 0) {
+            System.out.println("No");
+        }
+        System.out.println(s1.substring(0,1).toUpperCase() + s1.substring(1)
+        + " " + s2.substring(0,1).toUpperCase() + s2.substring(1));
     }
 }
