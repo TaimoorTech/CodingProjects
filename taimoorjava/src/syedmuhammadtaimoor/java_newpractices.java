@@ -2,6 +2,7 @@ package syedmuhammadtaimoor;
 import java.text.NumberFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -64,7 +65,7 @@ public class java_newpractices {
 //        System.out.println(day.getClass().getName());
 
         // NumberFormat class
-        Scanner sc = new Scanner(System.in);
+//        Scanner sc = new Scanner(System.in);
 //        double num = sc.nextDouble();
 //        NumberFormat dol = NumberFormat.getCurrencyInstance(Locale.US);
 //        NumberFormat ind = NumberFormat.getCurrencyInstance(Locale.US);
@@ -76,16 +77,25 @@ public class java_newpractices {
 //        System.out.println("China:" + chin.format(num));
 //        System.out.println("France:" + fra.format(num));
 //        Locale l = new Locale();
-        String s1 = sc.next();
-        String s2 = sc.next();
-        System.out.println(s1.length() + s2.length());
-        if(s1.compareTo(s2) > 0){
-            System.out.println("Yes");
-        }
-        else if(s1.compareTo(s2) < 0) {
-            System.out.println("No");
-        }
-        System.out.println(s1.substring(0,1).toUpperCase() + s1.substring(1)
-        + " " + s2.substring(0,1).toUpperCase() + s2.substring(1));
+//        String s1 = sc.next();
+//        String s2 = sc.next();
+//        System.out.println(s1.length() + s2.length());
+//        if(s1.compareTo(s2) > 0){
+//            System.out.println("Yes");
+//        }
+//        else if(s1.compareTo(s2) < 0) {
+//            System.out.println("No");
+//        }
+//        System.out.println(s1.substring(0,1).toUpperCase() + s1.substring(1)
+//        + " " + s2.substring(0,1).toUpperCase() + s2.substring(1));
+
+        Scanner sc =  new Scanner(System.in);
+        String st = sc.next();
+        sc.nextLine();
+        String st2 = sc.nextLine();
+        String []arr = st2.split(" ");
+        int num1 = Integer.parseInt(arr[0]);
+        int num2 = Integer.parseInt(arr[1]);
+        System.out.println(st.substring(num1, num2));
     }
 }
