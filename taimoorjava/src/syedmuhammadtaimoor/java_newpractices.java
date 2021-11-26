@@ -2,9 +2,11 @@ package syedmuhammadtaimoor;
 import java.text.NumberFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 
 public class java_newpractices {
 //    static int B;
@@ -89,13 +91,103 @@ public class java_newpractices {
 //        System.out.println(s1.substring(0,1).toUpperCase() + s1.substring(1)
 //        + " " + s2.substring(0,1).toUpperCase() + s2.substring(1));
 
-        Scanner sc =  new Scanner(System.in);
-        String st = sc.next();
+//        Scanner sc =  new Scanner(System.in);
+//        String st = sc.next();
+//        sc.nextLine();
+//        String st2 = sc.nextLine();
+//        String []arr = st2.split(" ");
+//        int num1 = Integer.parseInt(arr[0]);
+//        int num2 = Integer.parseInt(arr[1]);
+//        System.out.println(st.substring(num1, num2));
+
+//        Scanner sc =  new Scanner(System.in);
+//        String st = sc.next();
+//        int num = sc.nextInt();
+//        ArrayList<String> arr = new ArrayList<>();
+//        for (int i = 0; i < st.length(); i++) {
+//            if(i<=(st.length()-num)){
+//                arr.add(st.substring(i, i+num));
+//            }
+//        }
+//        Collections.sort(arr);
+//        System.out.println(arr.get(0)+"\n"+arr.get(arr.size()-1));
+
+//        Scanner sc =  new Scanner(System.in);
+//        String st = sc.next();
+//        boolean check = true;
+//        for (int i = 0; i < (st.length()/2)+1; i++) {
+//            if(st.charAt(i) == st.charAt(st.length()-i-1)){
+//                check = true;
+//            }
+//            else {
+//                check = false;
+//            }
+//        }
+//        if (check == true){
+//            System.out.println("Yes");
+//        }
+//        else {
+//            System.out.println("No");
+//        }
+//        boolean check = true;
+//        Scanner sc =  new Scanner(System.in);
+//        String st1 = sc.next().toLowerCase();
+//        String st2 = sc.next().toLowerCase();
+//        for(int i=0; i< st1.length(); i++){
+//            char s = st1.charAt(i);
+//            if(st1.chars().filter(ch -> ch == s).count() == st2.chars().filter(ch -> ch == s).count()){
+//                check = true;
+//            }
+//            else {
+//                check = false;
+//                break;
+//            }
+//        }
+//        if(check){
+//            System.out.println("Anagrams");
+//        }
+//        else {
+//            System.out.println("Not Anagrams");
+//        }
+
+//        Scanner sc = new Scanner(System.in);
+//        String s = "";
+//        long length;
+//        String l = sc.nextLine();
+//        String[] tokens = l.split("[\\s  !,?._'@]+");
+//        length = tokens.length;
+//        long l2 = Arrays.stream(tokens).filter(ch -> ch == s).count();
+//        String w = "";
+//        length-=l2;
+//        System.out.println(length);
+//        //System.out.println(Arrays.toString(tokens));
+//        for (String str: tokens) {
+//            if(str.isEmpty()){
+//                length--;
+//                continue;
+//            }
+//            else {
+//                System.out.println(str);
+//            }
+//        }
+        Scanner sc = new Scanner(System.in);
+        boolean flag = false;
+//        String s = sc.nextLine();
+//        System.out.println(s);
+        int num = sc.nextInt();
         sc.nextLine();
-        String st2 = sc.nextLine();
-        String []arr = st2.split(" ");
-        int num1 = Integer.parseInt(arr[0]);
-        int num2 = Integer.parseInt(arr[1]);
-        System.out.println(st.substring(num1, num2));
+        for (int i = 0; i < num; i++) {
+            String s = sc.nextLine();
+            try {
+                Pattern p = Pattern.compile(s);
+                flag = true;
+            } catch (PatternSyntaxException e) {
+                System.out.println("Invalid");
+                flag = false;
+            }
+            if(flag == true){
+                System.out.println("Valid");
+            }
+        }
     }
 }

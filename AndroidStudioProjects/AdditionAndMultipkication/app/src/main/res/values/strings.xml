@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AdditionAndMultipkication</string>
+    <string name="enter_number_2">Enter Number 2 :</string>
+    <string name="addition_of_two_numbers">Addition Of Two Numbers</string>
+    <string name="perform">PERFORM</string>
+    <string name="enter_number_1">Enter Number 1 :</string>
+    <string name="rext" />
+    <string name="number_2">Number 2</string>
+    <string name="number_1">Number 1</string>
+</resources>

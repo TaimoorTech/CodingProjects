@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">addition_and_multiplication</string>
+    <string name="addition_of_two_numbers">Addition of Two Numbers</string>
+    <string name="enter_number_2">Enter Number 2</string>
+    <string name="enter_number_1">Enter Number 1</string>
+    <string name="perform">Perform</string>
+    <string name="button">Button</string>
+</resources>

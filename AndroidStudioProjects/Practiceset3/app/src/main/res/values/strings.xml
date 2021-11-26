@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Practice set 3</string>
+    <string name="todo">TODO</string>
+    <string name="textview">1.</string>
+    <string name="textview2">Name : </string>
+    <string name="textview3">2.</string>
+    <string name="textview4">Add :</string>
+    <string name="todo2">TODO2</string>
+    <string name="todo1">TODO1</string>
+</resources>
