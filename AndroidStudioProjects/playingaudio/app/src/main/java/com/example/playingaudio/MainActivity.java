@@ -45,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 i++;
                 mediaPlayer.release();
-                play.setImageResource(R.drawable.play);
+                play.setImageResource(R.drawable.pause);
                 setMediaPlayer();
+                mediaPlayer.start();
             }
         });
     }
@@ -111,9 +112,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
-                i--;
-                setMediaPlayer();
-                mediaPlayer.start();
+                if(i == 0){
+                    i = fields.length - 1;
+                    setMediaPlayer();
+                    mediaPlayer.start();
+                }
+                else{
+                    i--;
+                    setMediaPlayer();
+                    mediaPlayer.start();
+                }
             }
         });
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

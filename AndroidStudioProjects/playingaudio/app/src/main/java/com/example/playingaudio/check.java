@@ -13,6 +13,7 @@ public class check {
 
         System.out.println(fields[1].getName());
         System.out.println(fields[1].getInt(fields[1]));
+        System.out.println(fields.length);
 
     }
 }
