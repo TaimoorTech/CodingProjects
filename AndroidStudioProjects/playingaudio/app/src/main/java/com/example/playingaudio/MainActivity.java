@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView next;
     private ImageView previous;
     private SurfaceView surfaceView;
-    public int i;
+    public int i=0;
     String var;
     Field[] fields = R.raw.class.getFields();
 

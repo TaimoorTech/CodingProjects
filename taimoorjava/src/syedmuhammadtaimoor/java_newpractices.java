@@ -170,25 +170,36 @@ public class java_newpractices {
 //                System.out.println(str);
 //            }
 //        }
+//        Scanner sc = new Scanner(System.in);
+//        boolean flag = false;
+////        String s = sc.nextLine();
+////        System.out.println(s);
+//        int num = sc.nextInt();
+//        sc.nextLine();
+//        for (int i = 0; i < num; i++) {
+//            String s = sc.nextLine();
+//            try {
+//                Pattern p = Pattern.compile(s);
+//                flag = true;
+//            } catch (PatternSyntaxException e) {
+//                System.out.println("Invalid");
+//                flag = false;
+//            }
+//            if(flag == true){
+//                System.out.println("Valid");
+//            }
+//        }
+//        System.out.println("Taimoor");
+
         Scanner sc = new Scanner(System.in);
-        boolean flag = false;
-//        String s = sc.nextLine();
-//        System.out.println(s);
-        int num = sc.nextInt();
-        sc.nextLine();
-        for (int i = 0; i < num; i++) {
-            String s = sc.nextLine();
-            try {
-                Pattern p = Pattern.compile(s);
-                flag = true;
-            } catch (PatternSyntaxException e) {
-                System.out.println("Invalid");
-                flag = false;
-            }
-            if(flag == true){
-                System.out.println("Valid");
-            }
-        }
-        System.out.println("Taimoor");
+        double number = sc.nextDouble();
+        String US = NumberFormat.getCurrencyInstance(Locale.US).format(number);
+        String CHINA = NumberFormat.getCurrencyInstance(Locale.CHINA).format(number);
+        String FRANCE = NumberFormat.getCurrencyInstance(Locale.FRANCE).format(number);
+        System.out.println("US: " + US);
+        String INDIAN = US.replace("$", "Rs.");
+        System.out.println("India: " + INDIAN);
+        System.out.println("China: " + CHINA);
+        System.out.println("France: " + FRANCE);
     }
 }
