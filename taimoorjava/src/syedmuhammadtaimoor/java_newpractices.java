@@ -1,4 +1,5 @@
 package syedmuhammadtaimoor;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.text.NumberFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -191,15 +192,35 @@ public class java_newpractices {
 //        }
 //        System.out.println("Taimoor");
 
+//        Scanner sc = new Scanner(System.in);
+//        double number = sc.nextDouble();
+//        String US = NumberFormat.getCurrencyInstance(Locale.US).format(number);
+//        String CHINA = NumberFormat.getCurrencyInstance(Locale.CHINA).format(number);
+//        String FRANCE = NumberFormat.getCurrencyInstance(Locale.FRANCE).format(number);
+//        System.out.println("US: " + US);
+//        String INDIAN = US.replace("$", "Rs.");
+//        System.out.println("India: " + INDIAN);
+//        System.out.println("China: " + CHINA);
+//        System.out.println("France: " + FRANCE);
+
+//        Tag Content Extractor
         Scanner sc = new Scanner(System.in);
-        double number = sc.nextDouble();
-        String US = NumberFormat.getCurrencyInstance(Locale.US).format(number);
-        String CHINA = NumberFormat.getCurrencyInstance(Locale.CHINA).format(number);
-        String FRANCE = NumberFormat.getCurrencyInstance(Locale.FRANCE).format(number);
-        System.out.println("US: " + US);
-        String INDIAN = US.replace("$", "Rs.");
-        System.out.println("India: " + INDIAN);
-        System.out.println("China: " + CHINA);
-        System.out.println("France: " + FRANCE);
+        Pattern p = Pattern.compile("<([a-zA-Z0-9]+)>([A-Za-z0-9[ ]]+)</([a-zA-Z0-9]+)>");
+        int n = sc.nextInt();
+        sc.nextLine();
+        for( int i=0;i<n;i++){
+            String s = sc.nextLine();
+            Matcher m = p.matcher(s);
+            if(m.find()){
+                if(m.group(1).equals(m.group(3))){
+                    System.out.println(m.group(2));
+                }
+                else{
+                    System.out.println("None");
+                }
+            }
+        }
+
+
     }
 }
