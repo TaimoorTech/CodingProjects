@@ -1,4 +1,4 @@
-def STORETRIANGULAR(A):
+def STORE_TRIANGULAR(A):
     i = 0
     U = []
     size_of_lst = int(0.5 * len(A) * (len(A) + 1))
@@ -17,13 +17,13 @@ def STORETRIANGULAR(A):
 triangular_matrix = [[-4, 0, 0, 0], [65, -88, 0, 0], [-24, -41, 59, 0], [-7, -32, -14, -99]]
 print("Triangular Matrix  : ", triangular_matrix)
 
-unidimensional_array = STORETRIANGULAR(triangular_matrix)
+unidimensional_array = STORE_TRIANGULAR(triangular_matrix)
 print("After Storing Triangular Matrix into Unidimensional : ", unidimensional_array)
 
 length = len(triangular_matrix)
 
 
-def RETRIEVETRIANGULAR(U, n):
+def RETRIEVE_TRIANGULAR(U, n):
     A = []
 
     for i in range(n):
@@ -44,6 +44,6 @@ def RETRIEVETRIANGULAR(U, n):
 
 print("Unidimensional array : ", unidimensional_array)
 
-converted_triangular_matrix = RETRIEVETRIANGULAR(unidimensional_array, length)
+converted_triangular_matrix = RETRIEVE_TRIANGULAR(unidimensional_array, length)
 print("Retrieving Triangular Matrix from Unidimensional array: ", converted_triangular_matrix)
 
