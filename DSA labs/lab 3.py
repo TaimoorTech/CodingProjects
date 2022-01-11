@@ -1,2 +1,0 @@
-def BINSEARCH(DATA, ITEM):
-    BEG = 0
