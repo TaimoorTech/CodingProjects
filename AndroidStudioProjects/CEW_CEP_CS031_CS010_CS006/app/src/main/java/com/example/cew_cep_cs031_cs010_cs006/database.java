@@ -2,6 +2,7 @@ package com.example.cew_cep_cs031_cs010_cs006;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -40,6 +41,12 @@ public class database extends SQLiteOpenHelper {
         else {
             return true;
         }
+    }
+
+    public Cursor get_info(){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from user_signup ", null);
+        return cursor;
     }
 
 }

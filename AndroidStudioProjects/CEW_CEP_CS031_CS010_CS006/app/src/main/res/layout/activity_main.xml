@@ -11,7 +11,7 @@
     <Button
         android:id="@+id/signup_main"
         android:layout_width="145dp"
-        android:layout_height="55dp"
+        android:layout_height="48dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/lora"
         android:text="Sign Up"
@@ -27,7 +27,7 @@
     <Button
         android:id="@+id/login_main"
         android:layout_width="145dp"
-        android:layout_height="55dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/lora"

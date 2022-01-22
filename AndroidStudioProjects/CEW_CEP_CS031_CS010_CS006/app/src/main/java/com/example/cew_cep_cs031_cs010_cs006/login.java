@@ -2,6 +2,7 @@ package com.example.cew_cep_cs031_cs010_cs006;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,11 +20,30 @@ public class login extends AppCompatActivity {
         login = findViewById(R.id.login);
         email_login = findViewById(R.id.email_login);
         password_login = findViewById(R.id.password_login);
+        database logging = new database(login.this);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(login.this, "You have been Logged-In....", Toast.LENGTH_LONG).show();
+                String mail = email_login.getText().toString();
+                String pass = password_login.getText().toString();
+                Cursor row = logging.get_info();
+                int i = 0;
+                if(mail.equals("") || pass.equals("")){
+                    Toast.makeText(login.this, "Fill the fields to Logged In........", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    while(row.moveToNext()){
+                        if(row.getString(2).equals(mail) && row.getString(3).equals(pass)){
+                            Toast.makeText(login.this, "You have been Logged-In....", Toast.LENGTH_LONG).show();
+                            i=1;
+                            break;
+                        }
+                    }
+                    if(i==0){
+                        Toast.makeText(login.this, "No data found....", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
     }
