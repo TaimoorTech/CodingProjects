@@ -2,6 +2,7 @@ package com.example.cew_cep_cs031_cs010_cs006;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        login = findViewById(R.id.login);
+        login = findViewById(R.id.loging);
         email_login = findViewById(R.id.email_login);
         password_login = findViewById(R.id.password_login);
         database logging = new database(login.this);
@@ -40,8 +41,14 @@ public class login extends AppCompatActivity {
                             break;
                         }
                     }
-                    if(i==0){
+                    if(i==0) {
                         Toast.makeText(login.this, "No data found....", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        String name = row.getString(1);
+                        Intent intent2 = new Intent(login.this, books.class);
+                        intent2.putExtra("login_name", name);
+                        startActivity(intent2);
                     }
                 }
             }
