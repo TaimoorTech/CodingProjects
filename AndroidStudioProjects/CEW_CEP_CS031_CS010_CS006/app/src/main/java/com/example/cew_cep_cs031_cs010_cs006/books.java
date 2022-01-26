@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class books extends AppCompatActivity {
     RecyclerView recyclerView;
-    //TextView display_name;
+    TextView display_names;
     String books_title[] = {"Harry Potter and the Philosopher's Stone",
             "Harry Potter and the Chamber of Secrets",
             "Harry Potter and the Prisoner of Azkaban"};
@@ -20,12 +20,14 @@ public class books extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
-        //display_name = findViewById(R.id.display);
+        display_names = findViewById(R.id.display_name);
         recyclerView = findViewById(R.id.recyclerView1);
+        Intent getName =  getIntent();
 
-//        Intent getName =  getIntent();
-//        String user = getName.getStringExtra("login_name");
-//        display_name.setText("Welcome " + user);
+        String user = getName.getStringExtra("login_name");
+        display_names.setText("Welcome " + user);
+
+
 
         //books_title = getResources().getStringArray(R.array.Book_Name);
 
