@@ -7,10 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private Button signup_button;
     private Button login_button;
+    private TextView direct_logging;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
         signup_button = findViewById(R.id.signup_main);
         login_button = findViewById(R.id.login_main);
+        direct_logging = findViewById(R.id.direct);
+
+        direct_logging.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent going = new Intent(MainActivity.this, books.class);
+                startActivity(going);
+            }
+        });
+
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
