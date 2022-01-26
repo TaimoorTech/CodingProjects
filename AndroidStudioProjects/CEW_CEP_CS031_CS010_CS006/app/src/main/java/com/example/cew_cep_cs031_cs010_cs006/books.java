@@ -13,8 +13,13 @@ public class books extends AppCompatActivity {
     TextView display_names;
     String books_title[] = {"Harry Potter and the Philosopher's Stone",
             "Harry Potter and the Chamber of Secrets",
-            "Harry Potter and the Prisoner of Azkaban"};
-    int book_images[] = {R.drawable.harry1, R.drawable.harry2, R.drawable.harry3};
+            "Harry Potter and the Prisoner of Azkaban","Amara the Brave", "The Book of Warlock",
+            "Hunger Games : Catching Fire", "The Dreaming Arts", "Heart Spring Mountain",
+            "The Hypocrite World", "RED Planet", "SEEDS of HATRED", "Torn", "The Girl on the Train"};
+    int book_images[] = {R.drawable.harry1, R.drawable.harry2, R.drawable.harry3,
+            R.drawable.amarabrave, R.drawable.bookwarlock, R.drawable.catchingfire,
+            R.drawable.dreamingarts, R.drawable.heartspringbook, R.drawable.hypocriteworld,
+            R.drawable.redplanet, R.drawable.seedshatred, R.drawable.torn, R.drawable.train};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
