@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/drawable/custom_button.xml" value="0.2890625" />
+        <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19270833333333334" />
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/drawable/input_xml.xml" value="0.19270833333333334" />
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/font/cambo.xml" value="0.303125" />
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/layout/activity_books.xml" value="0.17256944444444444" />
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/layout/activity_login.xml" value="0.18194444444444444" />
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/layout/activity_main.xml" value="0.18194444444444444" />
         <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/layout/activity_signup.xml" value="0.18194444444444444" />
+        <entry key="..\:/Users/Gigabyte/OneDrive/Desktop/taimoor projects/AndroidStudioProjects/CEW_CEP_CS031_CS010_CS006/app/src/main/res/layout/designing_books_view.xml" value="0.18194444444444444" />
       </map>
     </option>
   </component>
