@@ -15,7 +15,7 @@ class Library_management_System:
         contents = checking_email.read()
         email_content = list(contents.split(','))
         for i in range(len(email_content)):
-            already_registered_emails.append(contents)
+            already_registered_emails.append(contents[4])
         while True:
             self.email = input("Enter Email ID : ")
             if self.email in already_registered_emails:
@@ -26,7 +26,7 @@ class Library_management_System:
         self.password = input("Enter password : ")
         registering = open('User Registration.txt', 'a')
         registering.write(f"{time.strftime('%d/%m/%Y')},{time.strftime('%H:%M:%S')},{self.user_name},{self.age},"
-                          f"{self.email}, {self.password}")
+                          f"{self.email}, {self.password},\n")
         registering.close()
         print("Your Account has been Registered!")
 
@@ -40,7 +40,7 @@ class Library_management_System:
         self.check_pwd = input('Enter password: ')
         for i in convert:
             check = i.split(",")
-            if self.check_EmailID == check[5] and self.check_pwd == check[6]:
+            if self.check_EmailID == check[4] and self.check_pwd == check[5]:
                 print('You are logged in!')
                 self.count = 1
                 self.username = check[2]
