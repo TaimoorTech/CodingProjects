@@ -63,7 +63,7 @@ class Library_management_System:
             self.details.append(displaying)
         f.close()
 
-        headings = ["Book Name", "Author Name", "Subject", "Publication Date"]
+        headings = ["Book Title", "Author Name", "Subject", "Publication Date"]
         print("-"*143)
         print(f"| {headings[0]:^50} | {headings[1]:^30} | {headings[2]:^25} | {headings[3]:^25} |")
         print("-"*143)
@@ -155,14 +155,14 @@ class Library_management_System:
 
         return cart_of_user
 
-    def Check_out_book(self, cart=[]):
+    def check_out_book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
 
         cart_of_user = cart
 
-        headings = ["S.No", "Name of the Book", "Issue Date", "Issue Time"]
+        headings = ["S.No", "Title of the Book", "Issue Date", "Issue Time"]
         print("-" * 133)
         print(f"| {headings[0]:^10} | {headings[1]:^50} | {headings[2]:^30} | {headings[3]:^30}")
         print("-" * 133)
@@ -174,8 +174,108 @@ class Library_management_System:
         print("Thanks for visiting...")
         return "end"
 
+    def search(self):
+        self.details = []
+        f = open("books_information.txt", "r")
+        content = f.readlines()
+        for i in range(len(content)):
+            displaying = list(content[i].split(","))
+            self.details.append(displaying)
+        f.close()
+
+        print("\nPress:\n(1)Search by Title\n(2)Search by Author Name\n(3)Search by Subject\n"
+              "(4)Search by Publication Date")
+        key = input("Enter Key : ")
+        if key == '1':
+            count = 0
+            successful_search = []
+            title = input("Enter part of Title of Book : ")
+            for i in range(len(self.details)):
+                if title in self.details[i][0]:
+                    count += 1
+                    successful_search.append(self.details[i])
+            if count != 0:
+                print(f"Total Searches on basis of Title {title} : {count}.")
+                headings = ["S.No", "Title of the Book", "Author Name", "Subject", "Publication Date"]
+                print("-" * 156)
+                print(f"| {headings[0]:^10} | {headings[1]:^50} | {headings[2]:^30} | {headings[3]:^20} | "
+                      f"{headings[4]:^30} |")
+                print("-" * 156)
+                for i in range(len(successful_search)):
+                    print(f"| {str(i+1):^10} | {successful_search[i][0]:^50} | {successful_search[i][1]:^30} "
+                          f"| {successful_search[i][2]:^20} | {successful_search[i][3]:^30} |")
+                print("-" * 156)
+            else:
+                print("No data Found...")
+
+        elif key == '2':
+            count = 0
+            successful_search = []
+            author = input("Enter Author Name : ")
+            for i in range(len(self.details)):
+                if author == self.details[i][1]:
+                    count += 1
+                    successful_search.append(self.details[i])
+            if count != 0:
+                print(f"Total Searches on basis of Title {author} : {count}.")
+                headings = ["S.No", "Author Name", "Title of the Book", "Subject", "Publication Date"]
+                print("-" * 156)
+                print(f"| {headings[0]:^10} | {headings[1]:^30} | {headings[2]:^50} | {headings[3]:^20} | "
+                      f"{headings[4]:^30} |")
+                print("-" * 156)
+                for i in range(len(successful_search)):
+                    print(f"| {str(i+1):^10} | {successful_search[i][1]:^30} | {successful_search[i][0]:^50} "
+                          f"| {successful_search[i][2]:^20} | {successful_search[i][3]:^30} |")
+                print("-" * 156)
+            else:
+                print("No data Found...")
+
+        elif key == '3':
+            count = 0
+            successful_search = []
+            subject = input("Enter Subject : ")
+            for i in range(len(self.details)):
+                if subject == self.details[i][2]:
+                    count += 1
+                    successful_search.append(self.details[i])
+            if count != 0:
+                print(f"Total Searches on basis of Title {subject} : {count}.")
+                headings = ["S.No", "Subject", "Title of the Book", "Author Name", "Publication Date"]
+                print("-" * 156)
+                print(f"| {headings[0]:^10} | {headings[1]:^20} | {headings[2]:^50} | {headings[3]:^30} | "
+                      f"{headings[4]:^30} |")
+                print("-" * 156)
+                for i in range(len(successful_search)):
+                    print(f"| {str(i+1):^10} | {successful_search[i][2]:^20} | {successful_search[i][0]:^50} "
+                          f"| {successful_search[i][1]:^30} | {successful_search[i][3]:^30} |")
+                print("-" * 156)
+            else:
+                print("No data Found...")
+
+        elif key == '4':
+            count = 0
+            successful_search = []
+            publication_date = input("Enter Date of publication in format (DD/MM/YYYY) : ")
+            for i in range(len(self.details)):
+                if publication_date == self.details[i][3]:
+                    count += 1
+                    successful_search.append(self.details[i])
+            if count != 0:
+                print(f"Total Searches on basis of Title {publication_date} : {count}.")
+                headings = ["S.No", "Publication Date", "Title of the Book", "Author Name", "Subject"]
+                print("-" * 156)
+                print(f"| {headings[0]:^10} | {headings[1]:^30} | {headings[2]:^50} | {headings[3]:^30} | "
+                      f"{headings[4]:^20} |")
+                print("-" * 156)
+                for i in range(len(successful_search)):
+                    print(f"| {str(i+1):^10} | {successful_search[i][3]:^30} | {successful_search[i][0]:^50} "
+                          f"| {successful_search[i][1]:^30} | {successful_search[i][2]:^20} |")
+                print("-" * 156)
+            else:
+                print("No data Found...")
+
 
 
 d = Library_management_System()
 d.display_books()
-d.add_book()
+d.search()

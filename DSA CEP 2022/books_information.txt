@@ -1,2 +1,3 @@
-harry,harry,art,22-1-22,
-harry2,harry,art,22-1-22,
+harry1,JK,art,22/1/22,
+harry2,Jk Rowling,art,22/2/22,
+harry potter 3,JK,light,22/3/22,
