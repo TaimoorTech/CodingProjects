@@ -1,6 +1,8 @@
 import time
 
+
 class Library_management_System:
+
     def __init__(self, name="", author="", subject="", publication_date=""):
         self.name = name
         self.author_name = author
@@ -50,3 +52,27 @@ class Library_management_System:
             return "", ""
         else:
             return self.username, self.check_EmailID
+
+    def display_books(self):
+        details = []
+        f = open("books_information.txt", "r")
+        content = f.read()
+
+        displaying = list(content.split(","))
+        details.append(displaying)
+        f.close()
+        print(details)
+        headings = ["Book Name", "Author Name", "Subject", "Publication Date"]
+        print("-"*143)
+        print(f"| {headings[0]:^50} | {headings[1]:^30} | {headings[2]:^25} | {headings[3]:^25} *")
+        print("-"*143)
+        for i in range(len(details)):
+            print(f"| {details[i][0]:^50} | {details[i][1]:^30} | {details[i][2]:^25} | {details[i][3]:^25} |")
+        print("-" * 143)
+
+    def add_book(self):
+        pass
+
+
+d = Library_management_System()
+d.display_books()
