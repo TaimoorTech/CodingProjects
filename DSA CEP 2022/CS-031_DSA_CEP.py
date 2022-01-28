@@ -1,7 +1,7 @@
 import time
 
 
-class Library_management_System:
+class Library_Management_System:
 
     def __init__(self, name="", author="", subject="", publication_date=""):
         self.name = name
@@ -9,7 +9,7 @@ class Library_management_System:
         self.subject = subject
         self.date = publication_date
 
-    def register_account(self):
+    def Register_Account(self):
         already_registered_emails = []
         self.user_name = input("Enter user name: ")
         self.age = int(input("Enter user age: "))
@@ -32,7 +32,7 @@ class Library_management_System:
         registering.close()
         print("Your Account has been Registered!")
 
-    def login_account(self):
+    def Login_Account(self):
         self.count = 0
         f = open('Registered Accounts.txt', 'a+')
         f.seek(0)
@@ -53,7 +53,7 @@ class Library_management_System:
         else:
             return self.username, self.check_EmailID
 
-    def display_books(self):
+    def Display_Whole_Collection_Of_Books(self):
         self.details = []
 
         f = open("books_information.txt", "r")
@@ -72,7 +72,7 @@ class Library_management_System:
                   f"{self.details[i][3]:^25} |")
         print("-" * 143)
 
-    def add_book(self, cart=[]):
+    def Add_Book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -90,16 +90,16 @@ class Library_management_System:
             self.book_names.append(self.details[i][0])
         f.close()
 
-        self.addingbook = input("Enter Book Name you want to add: ")
-        if self.addingbook in self.book_names:
-            cart_of_user.append(self.addingbook)
-            print(f"The Book {self.addingbook} is being issued...")
+        self.adding_book = input("Enter Book Name you want to add: ")
+        if self.adding_book in self.book_names:
+            cart_of_user.append(self.adding_book)
+            print(f"The Book {self.adding_book} is being issued...")
         else:
-            print(f"The Book {self.addingbook} is not present in the library...")
+            print(f"The Book {self.adding_book} is not present in the library...")
 
         return cart_of_user
 
-    def delete_book(self, cart=[]):
+    def Delete_Book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -117,16 +117,16 @@ class Library_management_System:
             self.book_names.append(self.details[i][0])
         f.close()
 
-        self.deletingbook = input("Enter Book Name you want to delete : ")
-        if self.deletingbook in self.book_names:
-            cart_of_user.remove(self.deletingbook)
-            print(f"The Book {self.deletingbook} is being removed...")
+        self.deleting_book = input("Enter Book Name you want to delete : ")
+        if self.deleting_book in self.book_names:
+            cart_of_user.remove(self.deleting_book)
+            print(f"The Book {self.deleting_book} is being removed...")
         else:
-            print(f"The Book {self.deletingbook} is already not present in your cart...")
+            print(f"The Book {self.deleting_book} is already not present in your cart...")
 
         return cart_of_user
 
-    def modify_book(self, cart=[]):
+    def Modify_Book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -144,14 +144,14 @@ class Library_management_System:
             self.book_names.append(self.details[i][0])
         f.close()
 
-        self.modifybook = input("Enter Book Name you want to modify : ")
+        self.modify_book = input("Enter Book Name you want to modify : ")
         if self.modifybook in self.book_names:
-            self.new_book = input(f"Enter the Book Name you want to add in replace of Book {self.modifybook}: ")
-            cart_of_user.remove(self.modifybook)
+            self.new_book = input(f"Enter the Book Name you want to add in replace of Book {self.modify_book}: ")
+            cart_of_user.remove(self.modify_book)
             cart_of_user.append(self.new_book)
-            print(f"The Book {self.new_book} is being modified with the Book {self.modifybook}...")
+            print(f"The Book {self.new_book} is being modified with the Book {self.modify_book}...")
         else:
-            print(f"The Book {self.modifybook} is already not present in your cart...")
+            print(f"The Book {self.modify_book} is already not present in your cart...")
 
         return cart_of_user
 
@@ -171,10 +171,15 @@ class Library_management_System:
             count += 1
             print(f"| {count} | {cart_of_user[i]} | {time.strftime('%d/%m/%Y')} | {time.strftime('%H:%M:%S')}")
 
+        opening = open(f"{self.email}_Books_Issue.txt", "a+")
+        for i in range(len(cart_of_user)):
+            opening.write(f"{cart_of_user},")
+        opening.close()
+
         print("Thanks for visiting...")
         return "end"
 
-    def search(self):
+    def Search(self):
         self.details = []
         f = open("books_information.txt", "r")
         content = f.readlines()
@@ -274,8 +279,32 @@ class Library_management_System:
             else:
                 print("No data Found...")
 
+    def Reserve_Book(self):
+        book_for_reservation = input("Enter the Book you want to be Reserved : ")
+        opening = open(f"{self.email}_Reservation.txt", "a+")
+        opening.write(book_for_reservation + ",")
+        opening.close()
+
+    def Return_Book(self):
+        returned_book = input("Enter the Book you want to Return to the Library : ")
+
+        opening = open(f"{self.email}_Books_Issue.txt", "a+")
+        getting_details = opening.read()
+        issued_books = list(getting_details.split(","))
+        opening.close()
+
+        if returned_book in issued_books:
+            issued_books.remove(returned_book)
+            print(f"The Book {returned_book} is returned to the library...")
+        else:
+            print(f"You did not issue this Book {returned_book}...")
+
+        new_opening = open(f"{self.email}_Books_Issue.txt", "w")
+        for i in range(len(issued_books)):
+            new_opening.write(issued_books[i] + ",")
+        new_opening.close()
 
 
-d = Library_management_System()
-d.display_books()
-d.search()
+Library = Library_Management_System()
+Library.Display_Whole_Collection_Of_Books()
+Library.Search()
