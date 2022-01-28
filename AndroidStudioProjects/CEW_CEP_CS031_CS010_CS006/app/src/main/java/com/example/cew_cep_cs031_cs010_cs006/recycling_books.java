@@ -41,7 +41,7 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
             @Override
             public void onClick(View v) {
                 Intent intent3 = new Intent(context, displaying_information.class);
-                intent3.putExtra("information", title[position]);
+                intent3.putExtra("title", title[position]);
                 intent3.putExtra("image_resource", images[position]);
                 context.startActivity(intent3);
             }

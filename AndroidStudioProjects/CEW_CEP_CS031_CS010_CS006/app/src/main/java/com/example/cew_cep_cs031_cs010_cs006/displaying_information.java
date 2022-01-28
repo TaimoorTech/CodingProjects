@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class displaying_information extends AppCompatActivity {
     TextView information;
+    TextView title_get;
     ImageView img;
 
     @Override
@@ -18,12 +19,13 @@ public class displaying_information extends AppCompatActivity {
 
         information = findViewById(R.id.information);
         img = findViewById(R.id.retrieve_image);
+        title_get = findViewById(R.id.titlediplay);
 
         Intent retrieving = getIntent();
-        String info = retrieving.getStringExtra("information");
+        String info = retrieving.getStringExtra("title");
         int put_image = retrieving.getIntExtra("image_resource",1);
 
-        information.setText(info);
+        title_get.setText("Title Of Book : \n"+info);
         img.setImageResource(put_image);
 
     }
