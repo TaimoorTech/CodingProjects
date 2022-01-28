@@ -40,9 +40,13 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
         holder.mainlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                String[] getting_information = contents.get_description();
+
                 Intent intent3 = new Intent(context, displaying_information.class);
                 intent3.putExtra("title", title[position]);
                 intent3.putExtra("image_resource", images[position]);
+                intent3.putExtra("num", position);
                 context.startActivity(intent3);
             }
         });
@@ -56,6 +60,7 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView titles;
         ImageView img;
+        TextView description;
         ConstraintLayout mainlayout;
 
         public MyViewHolder(@NonNull View itemView) {
