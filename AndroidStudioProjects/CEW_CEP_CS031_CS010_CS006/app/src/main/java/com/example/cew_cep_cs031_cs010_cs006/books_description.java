@@ -42,9 +42,19 @@ public class books_description {
 
                 "Amara the Brave is a novel written by Matt Zhang.",
 
-                "The Author of the Book is JK Rowling. It was released in 2014.",
+                "The Book of Warlock a novel written by J.D. Oliva.he US Military has finally developed " +
+                        "the perfect weapon and it’s gone missing.\n\n" +
+                        "Desperate, they have reached out assassin Ethan Jericho to take out the man" +
+                        " responsible: Crawford Lockhart.\n\n" +
+                        "Fifteen years ago, Jericho knew Lockhart by another name—Warlock. As " +
+                        "Jericho’s former mentor, they were an inseparable team until Jericho " +
+                        "ruined it all. Now, Jericho faces a heart-wrenching offer: kill Warlock, " +
+                        "and the government will clear his record.\n\n" +
+                        "But when Jericho confronts his old friend, " +
+                        "he discovers Warlock’s weapon is a five-year-old girl" +
+                        "blessed with an unholy ability. And worse, Jericho isn’t the only " +
+                        "one tracking them down.",
 
-                "The Author of the Book is JK Rowling. It was released in 2016.",
 
                 "Catching Fire is a 2009 science fiction young adult novel by the American novelist " +
                         "Suzanne Collins, the second book in The Hunger Games series. As the sequel " +
@@ -58,8 +68,23 @@ public class books_description {
                         "positive reviews. The book has sold more than 19 million copies in the U.S." +
                         " alone.",
 
+                "The Dreaming Arts a book written by Tom Maloney.The Dreaming Arts is a book" +
+                        " about sleep and dreams and how to use them as a vehicle for personal " +
+                        "evolution.\n\nAll ages except children, men and women. People that are into" +
+                        " health, wellness, non-mainstream, alternative, independent thinkers, " +
+                        "open minded, and intelligent.",
 
-                        "The Author of the Book is JK Rowling. It was released in 2017.",
+                "Robin MacArthur’s newest book is a meditation on the connections between adulthood " +
+                        "and the land of ancestors. “Heart Spring Mountain” explores the buried " +
+                        "emotions that surface when a woman, Vale, returns to her hometown after her" +
+                        " drug-addicted mother, Bonnie, disappears in a hurricane. The story slowly " +
+                        "weaves through several generations of the same family, exposing how the past" +
+                        " influences the present. Although MacArthur has written a narrative filled " +
+                        "with compelling reflections on the past’s impact and global warming’s " +
+                        "repercussions, the present plot offers very little action. This is a novel " +
+                        "more focused on thought than experience.",
+
+
                         "The Author of the Book is JK Rowling. It was released in 2018.",
                         "The Author of the Book is JK Rowling. It was released in 2019.",
                         "The Author of the Book is JK Rowling. It was released in 2020.",
