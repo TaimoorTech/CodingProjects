@@ -44,6 +44,7 @@ public class books_description {
 
                 "The Author of the Book is JK Rowling. It was released in 2014.",
 
+                "The Author of the Book is JK Rowling. It was released in 2016.",
 
                 "Catching Fire is a 2009 science fiction young adult novel by the American novelist " +
                         "Suzanne Collins, the second book in The Hunger Games series. As the sequel " +
@@ -57,7 +58,7 @@ public class books_description {
                         "positive reviews. The book has sold more than 19 million copies in the U.S." +
                         " alone.",
 
-                        "The Author of the Book is JK Rowling. It was released in 2016.",
+
                         "The Author of the Book is JK Rowling. It was released in 2017.",
                         "The Author of the Book is JK Rowling. It was released in 2018.",
                         "The Author of the Book is JK Rowling. It was released in 2019.",
