@@ -28,7 +28,7 @@
         android:id="@+id/login_main"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="88dp"
         android:background="@drawable/custom_button"
         android:fontFamily="@font/lora"
         android:text="Log In"
@@ -38,7 +38,7 @@
         app:backgroundTint="#787878"
         app:layout_constraintBottom_toTopOf="@+id/direct"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.849"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -58,52 +58,30 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="68dp"
-        android:fontFamily="@font/lora"
-        android:gravity="center"
-        android:letterSpacing="0.1"
-        android:lineSpacingExtra="8sp"
-        android:text="WELCOME\nTO"
-        android:textColor="#E99E9E"
-        android:textSize="31sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.158"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="215dp"
-        android:layout_height="212dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="212dp"
         android:fontFamily="@font/lora"
         android:gravity="center"
         android:letterSpacing="0.07"
         android:lineSpacingExtra="8sp"
-        android:text="DREAM\nBOOK\nSTORE"
+        android:text="HOUSE\nOF\nKNOWLEDGE"
         android:textColor="#FFFFFF"
-        android:textSize="47sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/location1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="24dp"
         android:text="@string/location"
-        android:textColor="#223DD8"
+        android:textColor="#EC8F7E"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.943"

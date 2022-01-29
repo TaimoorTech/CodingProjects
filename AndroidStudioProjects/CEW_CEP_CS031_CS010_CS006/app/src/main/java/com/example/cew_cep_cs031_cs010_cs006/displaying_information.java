@@ -5,14 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class displaying_information extends AppCompatActivity {
     TextView inform;
     TextView title_get;
     ImageView img;
     private String[] text;
+    ImageView adding;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -20,11 +24,22 @@ public class displaying_information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaying_information);
 
+        adding = findViewById(R.id.clicking);
         inform = findViewById(R.id.informations);
         img = findViewById(R.id.retrieve_image);
         title_get = findViewById(R.id.titlediplay);
         books_description contents = new books_description();
         text = contents.get_description();
+
+        adding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adding.setImageResource(R.drawable.tick);
+                Toast.makeText(displaying_information.this, "The Book is added to your cart",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         Intent retrieving = getIntent();
         String name = retrieving.getStringExtra("title");
