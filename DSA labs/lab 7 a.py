@@ -2,24 +2,26 @@
 class STACK:
     def __init__(self):
         self.stack = []
+        self.TOS = 0
+        self.MAXSTK = 100
 
-    def PUSH(self, stack, TOS, MAXSTK, ITEM):
-        if TOS == MAXSTK-1:
+    def PUSH(self, ITEM):
+        if self.TOS == self.MAXSTK - 1:
             print("OVERFLOW")
             return
-        TOS = TOS + 1
-        self.stack[TOS] = ITEM
+        self.TOS = self.TOS + 1
+        self.stack.append(ITEM)
         return
 
     # A7.2
-    def POP(self, stack, TOS, ITEM):
-        if TOS == -1:
+    def POP(self):
+        if self.TOS == -1:
             print("UNDERFLOW")
             return
-
-        ITEM = self.stack[TOS]
-        TOS = TOS - 1
-        return
+        self.TOS = self.TOS - 1
+        self.Item = self.stack[self.TOS]
+        self.stack.remove(self.Item)
+        return self.Item
 
     def empty(self):
         if len(self.stack) == 0:
@@ -27,19 +29,19 @@ class STACK:
         else:
             return False
 
-    def ClearStack(self, stack=[]):
+    def ClearStack(self):
         X = 4
         Z = 0
         Y = X + 1
-        self.PUSH(self.stack, Y)
-        self.PUSH(self.stack, Y+1)
-        self.PUSH(self.stack, X)
-        self.POP(self.stack, Y)
+        self.PUSH(Y)
+        self.PUSH(Y+1)
+        self.PUSH(X)
+        self.POP(Y)
         X = Y + 1
-        self.PUSH(self.stack, X)
-        self.PUSH(self.stack, Z)
+        self.PUSH(X)
+        self.PUSH(Z)
         while (self.empty()):
-            self.POP(self.stack, Z)
+            self.POP(Z)
             print(Z)
 
         print("X = ", X)
