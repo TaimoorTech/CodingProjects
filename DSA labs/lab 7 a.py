@@ -1,10 +1,10 @@
-# A7.1
 class STACK:
     def __init__(self):
         self.stack = []
         self.TOS = 0
         self.MAXSTK = 100
 
+    # A7.1
     def PUSH(self, ITEM):
         if self.TOS == self.MAXSTK - 1:
             print("OVERFLOW")
@@ -48,3 +48,10 @@ class STACK:
         print("Y = ", Y)
         print("Z = ", Z)
 
+s = STACK()
+s.PUSH(44)
+s.PUSH(55)
+s.PUSH(66)
+print("After Pushing : ", s.stack)
+s.POP()
+print("After Popping : ", s.stack)

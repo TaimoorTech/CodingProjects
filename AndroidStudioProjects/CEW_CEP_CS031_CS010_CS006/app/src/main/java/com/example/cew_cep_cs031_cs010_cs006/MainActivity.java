@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent going = new Intent(MainActivity.this, books.class);
-                going.putExtra("login_name", "");
+                going.putExtra("login_name", " ");
                 startActivity(going);
             }
         });

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CEW_CEP_CS031_CS010_CS006">
         <activity
+            android:name=".checkout"
+            android:exported="false" />
+        <activity
             android:name=".displaying_information"
             android:exported="false" />
         <activity
