@@ -9,22 +9,20 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
-public class checkout extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
+        setContentView(R.layout.activity_main2);
         recyclerView = findViewById(R.id.recycle);
 
-//        Intent get = getIntent();
-//        ArrayList<String> n = get.getStringArrayListExtra("names");
-//        ArrayList<Integer> im = get.getIntegerArrayListExtra("im");
-        ArrayList<String> n = displaying_information.getActivityInstance1().getdata1();
-        ArrayList<Integer> im = displaying_information.getActivityInstance2().getdata2();
-
-        recyclingcart adapter = new recyclingcart(this, n, im);
+        Intent intent = getIntent();
+        ArrayList<String> b = intent.getStringArrayListExtra("namess");
+        ArrayList<Integer> im = intent.getIntegerArrayListExtra("imgs");
+        rrr adapter = new rrr(this,  b, im);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 }

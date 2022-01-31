@@ -2,7 +2,6 @@ package com.example.cew_cep_cs031_cs010_cs006;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -56,8 +55,6 @@ public class signup extends AppCompatActivity {
                             Boolean result = signing.data_insertion_database(user1, email1, pass1);
                             if (result == true){
                                 Toast.makeText(signup.this, "Account is Successfully Registered....", Toast.LENGTH_LONG).show();
-                                Intent im = new Intent(signup.this, login.class);
-                                startActivity(im);
                             }
                             else {
                                 Toast.makeText(signup.this, "Account is not Successfully Registered....", Toast.LENGTH_LONG).show();

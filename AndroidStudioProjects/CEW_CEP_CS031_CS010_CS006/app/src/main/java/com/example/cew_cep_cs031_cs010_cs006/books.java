@@ -11,10 +11,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class books extends AppCompatActivity {
     ImageView list_page_cart;
     RecyclerView recyclerView;
     TextView display_names;
+    static books instance1;
+    static books instance2;
+    ArrayList<String> new_back_names = new ArrayList<>();
+    ArrayList<Integer> new_back_image = new ArrayList<>();
     String books_title[] = {"Harry Potter and the Philosopher's Stone",
             "Harry Potter and the Chamber of Secrets",
             "Harry Potter and the Prisoner of Azkaban","Amara the Brave", "The Book of Warlock",
@@ -33,6 +39,16 @@ public class books extends AppCompatActivity {
         list_page_cart = findViewById(R.id.cart2);
         display_names = findViewById(R.id.display_name);
         recyclerView = findViewById(R.id.recyclerView1);
+        try {
+            ArrayList<String> back_names = displaying_information.getActivityInstance1().getdata1();
+            ArrayList<Integer> back_image = displaying_information.getActivityInstance2().getdata2();
+            new_back_image = back_image;
+            new_back_names = back_names;
+        } catch (Exception e) {
+
+        }
+
+
         Intent getName =  getIntent();
 
         String user = getName.getStringExtra("login_name");
@@ -50,5 +66,17 @@ public class books extends AppCompatActivity {
         recycling_books adapter = new recycling_books(this, books_title, book_images);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+    public static books getActivityInstance1(){
+        return instance1;
+    }
+    public static books getActivityInstance2(){
+        return instance2;
+    }
+    public ArrayList<String> getdata1(){
+        return this.new_back_names;
+    }
+    public ArrayList<Integer> getdata2(){
+        return this.new_back_image;
     }
 }
