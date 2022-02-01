@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,15 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
     String title[];
     Context context;
     int images[];
+    String prices[];
+    double ratings[];
 
-    public recycling_books(Context c, String names[], int []image){
+    public recycling_books(Context c, String names[], int []image, String []price, double []rating){
         context = c;
         title = names;
         images = image;
+        prices = price;
+        ratings = rating;
     }
 
     @NonNull
@@ -37,15 +42,15 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.titles.setText(title[position]);
         holder.img.setImageResource(images[position]);
+        holder.rupee.setText(prices[position]);
+        holder.ratingBar.setRating((float) ratings[position]);
         holder.mainlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                String[] getting_information = contents.get_description();
-
                 Intent intent3 = new Intent(context, displaying_information.class);
                 intent3.putExtra("title", title[position]);
                 intent3.putExtra("image_resource", images[position]);
+                intent3.putExtra("rating", String.valueOf(ratings[position]));
                 intent3.putExtra("num", position);
                 context.startActivity(intent3);
             }
@@ -58,6 +63,8 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        RatingBar ratingBar;
+        TextView rupee;
         TextView titles;
         ImageView img;
         TextView description;
@@ -66,8 +73,10 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             titles = itemView.findViewById(R.id.titleOfBook);
+            ratingBar = itemView.findViewById(R.id.ratingbar);
             img = itemView.findViewById(R.id.images_book);
             mainlayout = itemView.findViewById(R.id.mainlayout);
+            rupee = itemView.findViewById(R.id.money);
         }
     }
 }

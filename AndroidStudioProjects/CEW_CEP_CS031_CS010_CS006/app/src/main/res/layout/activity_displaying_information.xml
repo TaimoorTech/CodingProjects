@@ -22,7 +22,7 @@
         android:id="@+id/informations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:inputType="textMultiLine|text"
         android:minHeight="48dp"
         android:textSize="14sp"
@@ -36,7 +36,7 @@
         android:id="@+id/titlediplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="28dp"
         android:gravity="center"
         android:inputType="textMultiLine|text"
         android:minHeight="48dp"
@@ -49,12 +49,13 @@
 
     <ImageView
         android:id="@+id/clicking"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:layout_marginBottom="115dp"
+        android:layout_width="311dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="72dp"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/clickable" />
 

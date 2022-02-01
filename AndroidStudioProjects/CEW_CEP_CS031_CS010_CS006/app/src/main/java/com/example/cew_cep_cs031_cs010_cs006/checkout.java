@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 
+
 public class checkout extends AppCompatActivity {
     RecyclerView recyclerView;
     @Override
@@ -17,13 +18,12 @@ public class checkout extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         recyclerView = findViewById(R.id.recycle);
 
-//        Intent get = getIntent();
-//        ArrayList<String> n = get.getStringArrayListExtra("names");
-//        ArrayList<Integer> im = get.getIntegerArrayListExtra("im");
-        ArrayList<String> n = displaying_information.getActivityInstance1().getdata1();
-        ArrayList<Integer> im = displaying_information.getActivityInstance2().getdata2();
+        Intent get = getIntent();
+        ArrayList<String> n = get.getStringArrayListExtra("names");
+        ArrayList<Integer> im = get.getIntegerArrayListExtra("im");
+        ArrayList<String> f = get.getStringArrayListExtra("rat");
 
-        recyclingcart adapter = new recyclingcart(this, n, im);
+        recyclingcart adapter = new recyclingcart(this, n, im, f);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

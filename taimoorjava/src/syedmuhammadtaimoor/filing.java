@@ -23,32 +23,33 @@ public class filing {
 //        }
 
 
-//        try{
-//            FileWriter w = new FileWriter("jj.txt", true);
-//            w.write("taimoor222");
-//            w.close();
-//        }
-//        catch (IOException e){
-//            e.printStackTrace();
-//        }
+        try{
+            FileWriter w = new FileWriter("jj.txt", true);
+            w.write("taimoor2222222");
+            w.write("44444");
+            w.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
-//        String s = "";
-//        File n = new File("Registration.txt");
-//        try {
-//            Scanner sc = new Scanner(n);
-//            while (sc.hasNextLine()){
-//                s = sc.nextLine();
-//            }
-//            sc.close();
-//        }
-//        catch (FileNotFoundException e){
-//            e.printStackTrace();
-//        }
-//        String []arr = s.split(",");
-////        List<String> l = Arrays.asList(arr);
-//        ArrayList<String> m = new ArrayList<>(Arrays.asList(arr));
-//
-//        System.out.println(m);
+        String s = "";
+        File n = new File("jj.txt");
+        try {
+            Scanner sc = new Scanner(n);
+            while (sc.hasNextLine()){
+                s = sc.nextLine();
+            }
+            sc.close();
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        String []arr = s.split(",");
+//        List<String> l = Arrays.asList(arr);
+        ArrayList<String> m = new ArrayList<>(Arrays.asList(arr));
+
+        System.out.println(m);
 
 
         try {

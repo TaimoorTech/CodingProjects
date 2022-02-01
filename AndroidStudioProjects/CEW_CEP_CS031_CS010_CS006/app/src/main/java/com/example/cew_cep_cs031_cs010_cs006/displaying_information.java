@@ -3,10 +3,9 @@ package com.example.cew_cep_cs031_cs010_cs006;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 
 import android.widget.ImageView;
@@ -18,30 +17,22 @@ import java.util.ArrayList;
 public class displaying_information extends AppCompatActivity{
     ArrayList<String> let_names = new ArrayList<>();
     ArrayList<Integer> let_image = new ArrayList<>();
+    ArrayList<String> let_Stars = new ArrayList<String>();
     TextView inform;
     TextView title_get;
     ImageView img;
     ImageView information_page_cart;
     private String[] text;
     ImageView adding;
-    static displaying_information instance1;
-    static displaying_information instance2;
+
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaying_information);
-        try {
-            ArrayList<String> names = books.getActivityInstance1().getdata1();
-            ArrayList<Integer> imsg = books.getActivityInstance2().getdata2();
-            let_names = names;
-            let_image = imsg;
-        }catch (Exception e){
 
-        }
-        instance1 = this;
-        instance2 = this;
+
         information_page_cart = findViewById(R.id.cart);
         adding = findViewById(R.id.clicking);
         inform = findViewById(R.id.informations);
@@ -54,8 +45,9 @@ public class displaying_information extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(displaying_information.this, checkout.class);
-//                i.putStringArrayListExtra("names", names);
-//                i.putIntegerArrayListExtra("im", imsg);
+                i.putStringArrayListExtra("names", let_names);
+                i.putIntegerArrayListExtra("im", let_image);
+                i.putStringArrayListExtra("rat", let_Stars);
                 startActivity(i);
             }
         });
@@ -66,11 +58,14 @@ public class displaying_information extends AppCompatActivity{
                 adding.setImageResource(R.drawable.tick);
                 Toast.makeText(displaying_information.this, "The Book is added to your cart",
                         Toast.LENGTH_SHORT).show();
-                Intent retrieving = getIntent();
-                String name = retrieving.getStringExtra("title");
-                int put_image = retrieving.getIntExtra("image_resource",1);
+                Intent setting = getIntent();
+                String name = setting.getStringExtra("title");
+                int put_image = setting.getIntExtra("image_resource",1);
+                String rate = setting.getStringExtra("rating");
+                let_Stars.add(rate);
                 let_names.add(name);
                 let_image.add(put_image);
+
             }
         });
 
@@ -84,18 +79,4 @@ public class displaying_information extends AppCompatActivity{
         title_get.setText("Title Of Book : \n" + name);
         inform.setText("Description : \n" + text[pos]);
     }
-    public static displaying_information getActivityInstance1(){
-        return instance1;
-    }
-    public static displaying_information getActivityInstance2(){
-        return instance2;
-    }
-    public ArrayList<String> getdata1(){
-        return this.let_names;
-    }
-    public ArrayList<Integer> getdata2(){
-        return this.let_image;
-    }
-
-
 }
