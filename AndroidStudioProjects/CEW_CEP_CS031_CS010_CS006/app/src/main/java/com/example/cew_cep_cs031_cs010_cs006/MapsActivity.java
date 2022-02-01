@@ -11,7 +11,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-// com.example.librarylocation.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,7 +30,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        onMapReady(mMap);
+
     }
 
     /**
@@ -48,10 +47,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng pakistan = new LatLng(24.9298, 67.1148);
+        LatLng sydney = new LatLng(24.9298, 67.1148);
         // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom( com.google.android.gms.maps.model.LatLng, 20));
-        mMap.addMarker(new MarkerOptions().position(pakistan).title("Ned University"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(pakistan , 20));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Ned University"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney , 20.0F));
 
         // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
