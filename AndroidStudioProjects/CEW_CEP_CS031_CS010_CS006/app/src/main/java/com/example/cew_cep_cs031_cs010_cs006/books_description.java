@@ -34,9 +34,7 @@ public class books_description {
                         "at Hogwarts School of Witchcraft and Wizardry. Along with friends " +
                         "Ronald Weasley and Hermione Granger, Harry investigates Sirius Black, " +
                         "an escaped prisoner from Azkaban, the wizard prison, believed to be " +
-                        "one of Lord Voldemort's old allies.\n\nThe book was published in the United" +
-                        " Kingdom on 8 July 1999 by Bloomsbury and in the United States on 8 " +
-                        "September 1999 by Scholastic, Inc.The film adaptation of the novel was " +
+                        "one of Lord Voldemort's old allies.\n\nThe film adaptation of the novel was " +
                         "released in 2004, grossing more than $796 million and earning critical " +
                         "acclaim.",
 
@@ -46,9 +44,8 @@ public class books_description {
                         "the perfect weapon and it’s gone missing.\n\n" +
                         "Desperate, they have reached out assassin Ethan Jericho to take out the man" +
                         " responsible: Crawford Lockhart.\n\n" +
-                        "Fifteen years ago, Jericho knew Lockhart by another name—Warlock. As " +
-                        "Jericho’s former mentor, they were an inseparable team until Jericho " +
-                        "ruined it all. Now, Jericho faces a heart-wrenching offer: kill Warlock, " +
+                        "Fifteen years ago, Jericho knew Lockhart by another name—Warlock. " +
+                        "Now, Jericho faces a heart-wrenching offer: kill Warlock, " +
                         "and the government will clear his record.\n\n" +
                         "But when Jericho confronts his old friend, " +
                         "he discovers Warlock’s weapon is a five-year-old girl" +

@@ -29,10 +29,10 @@
         app:backgroundTint="#131313"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/address"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintVertical_bias="0.981" />
 
     <EditText
         android:id="@+id/address"

@@ -20,28 +20,29 @@
         </activity>
         <activity
             android:name=".checkout"
-            android:exported="false" />
+            android:exported="true"
+            android:label="Cart"/>
         <activity
             android:name=".displaying_information"
-            android:exported="false" />
+            android:exported="true"
+            android:label="Book Information"/>
         <activity
             android:name=".books"
-            android:exported="false" />
+            android:exported="true"
+            android:label=""/>
         <activity
             android:name=".login"
-            android:exported="false" />
+            android:exported="true"
+            android:label=""/>
         <activity
             android:name=".signup"
-            android:exported="false" />
+            android:exported="true"
+            android:label=""/>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"
+            android:label=""/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
