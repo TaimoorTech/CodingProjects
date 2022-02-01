@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cew_cep_cs031_cs010_cs006" >
+    package="com.example.cew_cep_cs031_cs010_cs006">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -8,10 +15,28 @@
         android:label="HOUSE OF KNOWLEDGE"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CEW_CEP_CS031_CS010_CS006" >
+        android:theme="@style/Theme.CEW_CEP_CS031_CS010_CS006">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".splashscreen"
-            android:exported="true" >
+            android:exported="true"
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,28 +46,27 @@
         <activity
             android:name=".checkout"
             android:exported="true"
-            android:label="Cart"/>
+            android:label="Cart" />
         <activity
             android:name=".displaying_information"
             android:exported="true"
-            android:label="Book Information"/>
+            android:label="Book Information" />
         <activity
             android:name=".books"
             android:exported="true"
-            android:label=""/>
+            android:label="" />
         <activity
             android:name=".login"
             android:exported="true"
-            android:label=""/>
+            android:label="" />
         <activity
             android:name=".signup"
             android:exported="true"
-            android:label=""/>
+            android:label="" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label=""/>
-
+            android:label="" />
 
         <meta-data
             android:name="preloaded_fonts"

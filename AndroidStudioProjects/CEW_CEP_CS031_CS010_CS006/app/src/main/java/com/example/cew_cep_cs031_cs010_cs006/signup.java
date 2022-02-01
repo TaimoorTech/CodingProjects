@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class signup extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class signup extends AppCompatActivity {
     private EditText username;
     private EditText email_signup;
     private EditText password_signup;
+    private TextView findinglocation2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +26,16 @@ public class signup extends AppCompatActivity {
         username = findViewById(R.id.username);
         email_signup = findViewById(R.id.email);
         password_signup = findViewById(R.id.password);
+        findinglocation2 = findViewById(R.id.location2);
         database signing = new database(signup.this);
 
-
+        findinglocation2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(signup.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

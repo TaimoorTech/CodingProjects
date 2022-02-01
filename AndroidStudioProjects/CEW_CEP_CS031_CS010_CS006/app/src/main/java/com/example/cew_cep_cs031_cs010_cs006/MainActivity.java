@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signup_button;
     private Button login_button;
     private TextView direct_logging;
+    private TextView findinglocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
         signup_button = findViewById(R.id.signup_main);
         login_button = findViewById(R.id.login_main);
         direct_logging = findViewById(R.id.direct);
+        findinglocation = findViewById(R.id.location1);
+
+        findinglocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i1 = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(i1);
+            }
+        });
 
         direct_logging.setOnClickListener(new View.OnClickListener() {
             @Override

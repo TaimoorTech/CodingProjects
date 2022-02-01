@@ -25,7 +25,7 @@ public class displaying_information extends AppCompatActivity{
     private String[] text;
     ImageView adding;
     String user_name;
-
+    TextView findinglocation4;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -33,7 +33,7 @@ public class displaying_information extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaying_information);
 
-
+        findinglocation4 = findViewById(R.id.location4);
         information_page_cart = findViewById(R.id.cart);
         adding = findViewById(R.id.clicking);
         inform = findViewById(R.id.informations);
@@ -41,6 +41,15 @@ public class displaying_information extends AppCompatActivity{
         title_get = findViewById(R.id.titlediplay);
         books_description contents = new books_description();
         text = contents.get_description();
+
+        findinglocation4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i3 = new Intent(displaying_information.this, MapsActivity.class);
+                startActivity(i3);
+            }
+        });
+
 
         information_page_cart.setOnClickListener(new View.OnClickListener() {
             @Override

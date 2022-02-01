@@ -38,7 +38,12 @@ public class books_description {
                         "released in 2004, grossing more than $796 million and earning critical " +
                         "acclaim.",
 
-                "Amara the Brave is a novel written by Matt Zhang.",
+                "Amara the Brave is a novel written by Matt Zhang.Amara, a jobless youngster who " +
+                        "comes to Madurai to help his aunt, a vegetable vendor, with her business " +
+                        "ends up incurring the wrath of an Assistant Commissioner of Police. He is " +
+                        "forced to flee for his life. While on the run, he ends up meeting a " +
+                        "politician’s daughter, Thenmozhi, who, after losing her first love to her " +
+                        "dad’s wrath, eventually falls for him.",
 
                 "The Book of Warlock a novel written by J.D. Oliva.he US Military has finally developed " +
                         "the perfect weapon and it’s gone missing.\n\n" +
@@ -82,11 +87,39 @@ public class books_description {
                         "more focused on thought than experience.",
 
 
-                        "The Author of the Book is JK Rowling. It was released in 2018.",
-                        "The Author of the Book is JK Rowling. It was released in 2019.",
-                        "The Author of the Book is JK Rowling. It was released in 2020.",
-                        "The Author of the Book is JK Rowling. It was released in 2021.",
-                        "The Author of the Book is JK Rowling. It was released in 2022."};
+                "The Author of the Book is JK Rowling. It was released in 2018.",
+
+
+                "A fantastic novel by Robert A. Heinlein. Jim Marlow and his strange-looking" +
+                                " Martian friend Willis were allowed to travel only so far. " +
+                                "But one day Willis unwittingly tuned into a treacherous plot that " +
+                                "threatened all the colonists on Mars, and it set Jim off on a " +
+                                "terrfying adventure that could save--or destroy--them all!\n",
+
+                "A novel by Christian Nadeau.s a former assassin, a man on the run for years, " +
+                        "Marac survived taking on odd jobs, living on society’s fringe, never " +
+                        "putting down roots for fear of having to run again. Until he’s hired to " +
+                        "steal a trinket from the Brotherhood.\n" +
+                        "\n" +
+                        "Newly graduated, Soren is ready to shoulder the responsibilities that come " +
+                        "with an officer’s commission. Serving in the Brotherhood of Khan is a " +
+                        "privilege, one he abandoned everything for. \n" +
+                        "\n" +
+                        "As a Lightbearer, gifted with the power to shape light to her will, " +
+                        "Alex lived a sheltered life in Tyranor’s monastery. Should the Brotherhood " +
+                        "find out what she was, they’d kill her, but the monastery is underground, " +
+                        "safely hidden from their prying eyes.",
+
+                "The Author of the Book is JK Rowling. It was released in 2021.",
+
+                "he Girl on the Train is a 2015 psychological thriller novel by British author " +
+                        "Paula Hawkins that gives narratives from three different women about " +
+                        "relationship troubles (caused by three coercive/controlling men) and, " +
+                        "for the main protagonist, alcoholism. The novel debuted in the number one " +
+                        "spot on The New York Times Fiction Best Sellers of 2015 list " +
+                        "(print and e-book) dated 1 February 2015\n\nBy early August, the book had " +
+                        "sold more than three million copies in the U.S. alone, and, by October " +
+                        "2016, an estimated 20 million copies worldwide."};
         return des;
     }
 }

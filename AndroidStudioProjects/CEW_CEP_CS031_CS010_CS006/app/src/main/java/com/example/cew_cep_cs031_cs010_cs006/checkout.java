@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,14 +20,25 @@ public class checkout extends AppCompatActivity {
     RecyclerView recyclerView;
     Button checkingOut;
     EditText address;
+    TextView findinglocation6;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        findinglocation6 = findViewById(R.id.loc6);
         recyclerView = findViewById(R.id.recycle);
         checkingOut = findViewById(R.id.checkoutting);
         address = findViewById(R.id.address);
+
+        findinglocation6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(checkout.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
         checkingOut.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class login extends AppCompatActivity {
     private Button login;
     private EditText email_login;
     private EditText password_login;
+    private TextView findinglocation3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,15 @@ public class login extends AppCompatActivity {
         email_login = findViewById(R.id.email_login);
         password_login = findViewById(R.id.password_login);
         database logging = new database(login.this);
+        findinglocation3 = findViewById(R.id.location3);
+
+        findinglocation3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(login.this, MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
