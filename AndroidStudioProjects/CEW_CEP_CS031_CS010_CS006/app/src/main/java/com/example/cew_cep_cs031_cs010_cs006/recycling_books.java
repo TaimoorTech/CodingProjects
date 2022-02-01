@@ -21,13 +21,17 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
     int images[];
     String prices[];
     double ratings[];
+    String login_names;
 
-    public recycling_books(Context c, String names[], int []image, String []price, double []rating){
+
+    public recycling_books(Context c, String names[], int []image, String []price, double []rating, String name){
         context = c;
         title = names;
         images = image;
         prices = price;
         ratings = rating;
+        login_names = name;
+
     }
 
     @NonNull
@@ -52,6 +56,7 @@ public class recycling_books extends RecyclerView.Adapter<recycling_books.MyView
                 intent3.putExtra("image_resource", images[position]);
                 intent3.putExtra("rating", String.valueOf(ratings[position]));
                 intent3.putExtra("num", position);
+                intent3.putExtra("n1", login_names);
                 context.startActivity(intent3);
             }
         });

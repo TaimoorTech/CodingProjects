@@ -17,13 +17,14 @@ import java.util.ArrayList;
 public class displaying_information extends AppCompatActivity{
     ArrayList<String> let_names = new ArrayList<>();
     ArrayList<Integer> let_image = new ArrayList<>();
-    ArrayList<String> let_Stars = new ArrayList<String>();
+    ArrayList<String> let_Stars = new ArrayList<>();
     TextView inform;
     TextView title_get;
     ImageView img;
     ImageView information_page_cart;
     private String[] text;
     ImageView adding;
+    String user_name;
 
 
     @SuppressLint("SetTextI18n")
@@ -44,11 +45,12 @@ public class displaying_information extends AppCompatActivity{
         information_page_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(displaying_information.this, checkout.class);
-                i.putStringArrayListExtra("names", let_names);
-                i.putIntegerArrayListExtra("im", let_image);
-                i.putStringArrayListExtra("rat", let_Stars);
-                startActivity(i);
+                Intent i1 = new Intent(displaying_information.this, checkout.class);
+                i1.putStringArrayListExtra("names", let_names);
+                i1.putIntegerArrayListExtra("im", let_image);
+                i1.putStringArrayListExtra("rat", let_Stars);
+                i1.putExtra("n2", user_name);
+                startActivity(i1);
             }
         });
 
@@ -62,6 +64,7 @@ public class displaying_information extends AppCompatActivity{
                 String name = setting.getStringExtra("title");
                 int put_image = setting.getIntExtra("image_resource",1);
                 String rate = setting.getStringExtra("rating");
+                user_name = setting.getStringExtra("n1");
                 let_Stars.add(rate);
                 let_names.add(name);
                 let_image.add(put_image);

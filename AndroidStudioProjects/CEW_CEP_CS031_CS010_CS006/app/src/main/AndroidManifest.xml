@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="DREAM BOOK STORE"
+        android:label="HOUSE OF KNOWLEDGE"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CEW_CEP_CS031_CS010_CS006" >

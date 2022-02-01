@@ -54,9 +54,10 @@ public class books extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        Intent i = getIntent();
+        String name = i.getStringExtra("login_name");
 
-
-        recycling_books adapter = new recycling_books(this, books_title, book_images, prices, rating);
+        recycling_books adapter = new recycling_books(this, books_title, book_images, prices, rating, name);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
