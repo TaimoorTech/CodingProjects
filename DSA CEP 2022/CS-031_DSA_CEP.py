@@ -304,6 +304,19 @@ class Library_Management_System:
             new_opening.write(issued_books[i] + ",")
         new_opening.close()
 
+    def Renew_Book(self):
+        renew_book = input("Enter the Book you want to Renew to the Library : ")
+
+        opening = open(f"{self.email}_Books_Issue.txt", "a+")
+        getting_details = opening.read()
+        issued_books = list(getting_details.split(","))
+        opening.close()
+
+        if renew_book in issued_books:
+            print(f"The Book {renew_book} is renewed...")
+        else:
+            print(f"The Book {renew_book} is not present in your issued_books list...")
+
 
 Library = Library_Management_System()
 Library.Display_Whole_Collection_Of_Books()
