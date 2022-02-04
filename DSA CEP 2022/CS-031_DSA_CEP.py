@@ -13,7 +13,7 @@ class Library_Management_System:
         already_registered_emails = []
         self.user_name = input("Enter user name: ")
         self.age = int(input("Enter user age: "))
-        checking_email = open("Registered Accounts.txt", "a+")
+        checking_email = open("Registered_Accounts.txt", "a+")
         contents = checking_email.read()
         email_content = list(contents.split(','))
         for i in range(len(email_content)):
@@ -32,9 +32,24 @@ class Library_Management_System:
         registering.close()
         print("Your Account has been Registered!")
 
+    def Cancel_Membership(self):
+        f = open('Registered_Accounts.txt', 'a+')
+        f.seek(0)
+        registered_emails = f.readlines()
+        f.close()
+        self.check_EmailID = input('Enter Email ID: ')
+        self.check_pwd = input('Enter password: ')
+        confirm = input("Press Y to confirm : ")
+        if confirm == "Y":
+            for i in range(len(registered_emails)):
+                check = registered_emails[i].split(",")
+                if self.check_EmailID == check[4] and self.check_pwd == check[5]:
+                    registered_emails.pop(i)
+                    print("Membership is cancelled...")
+
     def Login_Account(self):
         self.count = 0
-        f = open('Registered Accounts.txt', 'a+')
+        f = open('Registered_Accounts.txt', 'a+')
         f.seek(0)
         convert = f.readlines()
         f.close()
@@ -73,10 +88,6 @@ class Library_Management_System:
         print("-" * 143)
 
     def Add_Book(self, cart=[]):
-        if len(cart) == 0:
-            print("Your cart is empty...")
-            return
-
         cart_of_user = cart
         self.book_names = []
         self.details = []
@@ -279,11 +290,16 @@ class Library_Management_System:
             else:
                 print("No data Found...")
 
+        else:
+            print('Kindly Enter Suitable Key...')
+            return
+
     def Reserve_Book(self):
         book_for_reservation = input("Enter the Book you want to be Reserved : ")
         opening = open(f"{self.email}_Reservation.txt", "a+")
         opening.write(book_for_reservation + ",")
         opening.close()
+        print(f"The Book {book_for_reservation} is  being reserved...")
 
     def Return_Book(self):
         returned_book = input("Enter the Book you want to Return to the Library : ")
@@ -315,7 +331,10 @@ class Library_Management_System:
         if renew_book in issued_books:
             print(f"The Book {renew_book} is renewed...")
         else:
-            print(f"The Book {renew_book} is not present in your issued_books list...")
+            print(f"The Book {renew_book} is not present in your Issued_books list...")
+
+    def Merge_sort(self):
+        pass
 
 
 Library = Library_Management_System()
