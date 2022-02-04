@@ -334,7 +334,18 @@ class Library_Management_System:
             print(f"The Book {renew_book} is not present in your Issued_books list...")
 
     def Merge_sort(self):
-        pass
+        self.details = []
+        merge_list = []
+
+if __name__ == "__main__":
+    username=""
+    while True:
+        print("*" * 35)
+        print("Welcome to Dream Online Shopping Store {}!!!".format((username)))
+        print("Here are the options : \n(1) Display Products\n(2) Add the Products to the Cart\n"
+              "(3) Remove the Products from the Cart\n(4) View the Cart\n(5) View Shopping History"
+              "\n(6) Checkout\n(7) Register to your Account\n(8) Login into your account\n"
+              "(9) Login to your Another Account\n(10) Login as Administrator\n(11) Exit")
 
 
 Library = Library_Management_System()
