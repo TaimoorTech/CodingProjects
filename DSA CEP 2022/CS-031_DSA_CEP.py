@@ -14,11 +14,13 @@ class Library_Management_System:
         self.user_name = input("Enter user name: ")
         self.age = int(input("Enter user age: "))
         checking_email = open("Registered_Accounts.txt", "a+")
+        checking_email.seek(0)
         contents = checking_email.read()
         email_content = list(contents.split(','))
+        checking_email.close()
         try:
             for i in range(len(email_content)):
-                already_registered_emails.append(contents[4])
+                already_registered_emails.append(email_content[4])
         except Exception:
             pass
         while True:
@@ -36,28 +38,36 @@ class Library_Management_System:
         print("Your Account has been Registered!")
 
     def Cancel_Membership(self):
+        account_details = []
         f = open('Registered_Accounts.txt', 'a+')
         f.seek(0)
         registered_emails = f.readlines()
+        for i in range(len(registered_emails)):
+            displaying = list(registered_emails[i].split(","))
+            account_details.append(displaying)
         f.close()
-        self.check_EmailID = input('Enter Email ID: ')
+
+        check_EmailID = input('Enter Email ID: ')
         self.check_pwd = input('Enter password: ')
         confirm = input("Press Y to confirm : ")
         y = 0
         if confirm == "Y":
             for i in range(len(registered_emails)):
-                check = registered_emails[i].split(",")
-                if self.check_EmailID == check[4] and self.check_pwd == check[5]:
-                    registered_emails.pop(i)
+                if check_EmailID == account_details[i][4] and self.check_pwd == account_details[i][5]:
+                    account_details.pop(i)
                     print("Membership is cancelled...")
                     y = 1
                     break
+
         if y == 1:
+            for i in range(len(account_details)):
+                if len(account_details[i]) > 0:
+                    registering = open('Registered_Accounts.txt', 'w')
+                    registering.write(f"{account_details[i][0]},{account_details[i][1]},{account_details[i][2]},"
+                                      f"{account_details[i][3]},{account_details[i][4]},{account_details[i][5]},\n")
+                    registering.close()
+        elif y == 0:
             print("Membership Cancelling Failed...")
-        for i in range(len(registered_emails)):
-            registering = open('Registered_Accounts.txt', 'w')
-            registering.write(f"{registered_emails[i][0]},{registered_emails[i][1]},{registered_emails[i][2]},"
-                              f"{registered_emails[i][3]},{registered_emails[i][4]},{registered_emails[i][5]},\n")
 
     def Login_Account(self):
         self.count = 0
@@ -100,7 +110,7 @@ class Library_Management_System:
                   f"{self.details[i][3]:<25} |")
         print("-" * 158)
 
-    def Add_Book(self, cart):
+    def Add_Book(self, cart=[]):
         cart_of_user = cart
         self.book_names = []
         self.details = []
@@ -126,10 +136,10 @@ class Library_Management_System:
 
         return cart_of_user
 
-    def Delete_Book(self, cart):
+    def Delete_Book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
-            return
+            return []
 
         cart_of_user = cart
         self.book_names = []
@@ -156,10 +166,10 @@ class Library_Management_System:
 
         return cart_of_user
 
-    def Modify_Book(self, cart):
+    def Modify_Book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
-            return
+            return []
 
         cart_of_user = cart
         self.book_names = []
@@ -188,7 +198,7 @@ class Library_Management_System:
 
         return cart_of_user
 
-    def Check_out_book(self, cart):
+    def Check_out_book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
