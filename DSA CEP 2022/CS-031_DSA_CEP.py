@@ -300,7 +300,7 @@ class Library_Management_System:
                       f"{headings[4]:^25} |")
                 print("-" * 167)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i + 1):^6} | {successful_search[i][2]:<35} | {successful_search[i][0]:<55}"
+                    print(f"| {str(i + 1):^6} | {successful_search[i][2]:<35} | {successful_search[i][0]:<55} "
                           f"| {successful_search[i][1]:<30} | {successful_search[i][3]:<25} |")
                 print("-" * 167)
             else:
