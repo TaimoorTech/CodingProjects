@@ -16,8 +16,11 @@ class Library_Management_System:
         checking_email = open("Registered_Accounts.txt", "a+")
         contents = checking_email.read()
         email_content = list(contents.split(','))
-        for i in range(len(email_content)):
-            already_registered_emails.append(contents[4])
+        try:
+            for i in range(len(email_content)):
+                already_registered_emails.append(contents[4])
+        except Exception:
+            pass
         while True:
             self.email = input("Enter Email ID : ")
             if self.email in already_registered_emails:
@@ -28,7 +31,7 @@ class Library_Management_System:
         self.password = input("Enter password : ")
         registering = open('Registered_Accounts.txt', 'a')
         registering.write(f"{time.strftime('%d/%m/%Y')},{time.strftime('%H:%M:%S')},{self.user_name},{self.age},"
-                          f"{self.email}, {self.password},\n")
+                          f"{self.email},{self.password},\n")
         registering.close()
         print("Your Account has been Registered!")
 
@@ -74,7 +77,7 @@ class Library_Management_System:
                 break
         if self.count == 0:
             print('Incorrect ID or password...Try again!')
-            return "", ""
+            return ""
         else:
             return self.username
 
@@ -97,7 +100,7 @@ class Library_Management_System:
                   f"{self.details[i][3]:<25} |")
         print("-" * 158)
 
-    def Add_Book(self, cart=[]):
+    def Add_Book(self, cart):
         cart_of_user = cart
         self.book_names = []
         self.details = []
@@ -111,16 +114,19 @@ class Library_Management_System:
             self.book_names.append(self.details[i][0])
         f.close()
 
+        check = 0
         self.adding_book = input("Enter Book Name you want to add: ")
-        if self.adding_book in self.book_names:
-            cart_of_user.append(self.adding_book)
-            print(f"The Book {self.adding_book} is being issued...")
-        else:
+        for i in range(len(self.book_names)):
+            if self.adding_book == self.book_names[i]:
+                cart_of_user.append(self.adding_book)
+                print(f"The Book {self.adding_book} is being issued...")
+                check = 1
+        if check == 0:
             print(f"The Book {self.adding_book} is not present in the library...")
 
         return cart_of_user
 
-    def Delete_Book(self, cart=[]):
+    def Delete_Book(self, cart):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -138,16 +144,19 @@ class Library_Management_System:
             self.book_names.append(self.details[i][0])
         f.close()
 
+        check = 0
         self.deleting_book = input("Enter Book Name you want to delete : ")
-        if self.deleting_book in self.book_names:
-            cart_of_user.remove(self.deleting_book)
-            print(f"The Book {self.deleting_book} is being removed...")
-        else:
+        for i in range(len(self.book_names)):
+            if self.deleting_book == self.book_names[i]:
+                cart_of_user.remove(self.deleting_book)
+                print(f"The Book {self.deleting_book} is being removed...")
+                check = 1
+        if check == 0:
             print(f"The Book {self.deleting_book} is already not present in your cart...")
 
         return cart_of_user
 
-    def Modify_Book(self, cart=[]):
+    def Modify_Book(self, cart):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -165,18 +174,21 @@ class Library_Management_System:
             self.book_names.append(self.details[i][0])
         f.close()
 
+        check = 0
         self.modify_book = input("Enter Book Name you want to modify : ")
-        if self.modifybook in self.book_names:
-            self.new_book = input(f"Enter the Book Name you want to add in replace of Book {self.modify_book}: ")
-            cart_of_user.remove(self.modify_book)
-            cart_of_user.append(self.new_book)
-            print(f"The Book {self.new_book} is being modified with the Book {self.modify_book}...")
-        else:
+        for i in range(len(self.book_names)):
+            if self.modify_book == self.book_names[i]:
+                self.new_book = input(f"Enter the Book Name you want to add in replace of Book {self.modify_book}: ")
+                cart_of_user.remove(self.modify_book)
+                cart_of_user.append(self.new_book)
+                print(f"The Book {self.new_book} is being modified with the Book {self.modify_book}...")
+                check = 1
+        if check == 0:
             print(f"The Book {self.modify_book} is already not present in your cart...")
 
         return cart_of_user
 
-    def Check_out_book(self, cart=[]):
+    def Check_out_book(self, cart):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -184,21 +196,28 @@ class Library_Management_System:
         cart_of_user = cart
 
         headings = ["S.No", "Title of the Book", "Issue Date", "Issue Time"]
-        print("-" * 133)
-        print(f"| {headings[0]:^10} | {headings[1]:^60} | {headings[2]:^30} | {headings[3]:^30}")
-        print("-" * 133)
+        print("-" * 145)
+        print(f"| {headings[0]:^10} | {headings[1]:^62} | {headings[2]:^30} | {headings[3]:^30} |")
+        print("-" * 145)
         count = 0
         for i in range(len(cart_of_user)):
             count += 1
-            print(f"| {count} | {cart_of_user[i]} | {time.strftime('%d/%m/%Y')} | {time.strftime('%H:%M:%S')}")
+            print(f"| {count:^10} |   {cart_of_user[i]:<60} | {time.strftime('%d/%m/%Y'):^30} | "
+                  f"{time.strftime('%H:%M:%S'):^30} |")
+        print("-" * 145)
 
-        opening = open(f"{self.email}_Books_Issue.txt", "a+")
-        for i in range(len(cart_of_user)):
-            opening.write(f"{cart_of_user},")
-        opening.close()
-
-        print("Thanks for visiting...")
-        return "end"
+        while True:
+            confirm = input("Do you want to Checkout ?\nPress:\n(1) Yes\n(2) No\nEnter Key : ")
+            if confirm == "1":
+                opening = open(f"{self.email}_Books_Issue.txt", "a+")
+                for i in range(len(cart_of_user)):
+                    opening.write(f"{cart_of_user[i]},")
+                opening.close()
+                return "end"
+            elif confirm == "2":
+                return "not end"
+            else:
+                print("Kindly Enter Suitable Key...")
 
     def Search(self):
         self.details = []
@@ -208,9 +227,8 @@ class Library_Management_System:
             displaying = list(content[i].split(","))
             self.details.append(displaying)
         f.close()
-
-        print("\nPress:\n(1)Search by Title\n(2)Search by Author Name\n(3)Search by Subject\n"
-              "(4)Search by Publication Date")
+        print("Press:\n(1) Search by Title\n(2) Search by Author Name\n(3) Search by Subject\n"
+              "(4) Search by Publication Date")
         key = input("Enter Key : ")
         if key == '1':
             count = 0
@@ -223,14 +241,14 @@ class Library_Management_System:
             if count != 0:
                 print(f"Total Searches on basis of Title {title} : {count}.")
                 headings = ["S.No", "Title of the Book", "Author Name", "Subject", "Publication Date"]
-                print("-" * 156)
-                print(f"| {headings[0]:^10} | {headings[1]:^50} | {headings[2]:^30} | {headings[3]:^20} | "
-                      f"{headings[4]:^30} |")
-                print("-" * 156)
+                print("-" * 167)
+                print(f"| {headings[0]:^6} | {headings[1]:^55} | {headings[2]:^30} | {headings[3]:^35} | "
+                      f"{headings[4]:^25} |")
+                print("-" * 167)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i + 1):^10} | {successful_search[i][0]:^50} | {successful_search[i][1]:^30} "
-                          f"| {successful_search[i][2]:^20} | {successful_search[i][3]:^30} |")
-                print("-" * 156)
+                    print(f"| {str(i + 1):^6} | {successful_search[i][0]:<55} | {successful_search[i][1]:<30} "
+                          f"| {successful_search[i][2]:<35} | {successful_search[i][3]:<25} |")
+                print("-" * 167)
             else:
                 print("No data Found...")
 
@@ -239,20 +257,20 @@ class Library_Management_System:
             successful_search = []
             author = input("Enter Author Name : ")
             for i in range(len(self.details)):
-                if author == self.details[i][1]:
+                if author in self.details[i][1]:
                     count += 1
                     successful_search.append(self.details[i])
             if count != 0:
                 print(f"Total Searches on basis of Title {author} : {count}.")
                 headings = ["S.No", "Author Name", "Title of the Book", "Subject", "Publication Date"]
-                print("-" * 156)
-                print(f"| {headings[0]:^10} | {headings[1]:^30} | {headings[2]:^50} | {headings[3]:^20} | "
-                      f"{headings[4]:^30} |")
-                print("-" * 156)
+                print("-" * 167)
+                print(f"| {headings[0]:^6} | {headings[1]:^30} | {headings[2]:^55} | {headings[3]:^35} | "
+                      f"{headings[4]:^25} |")
+                print("-" * 167)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i + 1):^10} | {successful_search[i][1]:^30} | {successful_search[i][0]:^50} "
-                          f"| {successful_search[i][2]:^20} | {successful_search[i][3]:^30} |")
-                print("-" * 156)
+                    print(f"| {str(i + 1):^6} | {successful_search[i][1]:<30} | {successful_search[i][0]:<55} "
+                          f"| {successful_search[i][2]:<35} | {successful_search[i][3]:<25} |")
+                print("-" * 167)
             else:
                 print("No data Found...")
 
@@ -261,20 +279,20 @@ class Library_Management_System:
             successful_search = []
             subject = input("Enter Subject : ")
             for i in range(len(self.details)):
-                if subject == self.details[i][2]:
+                if subject in self.details[i][2]:
                     count += 1
                     successful_search.append(self.details[i])
             if count != 0:
                 print(f"Total Searches on basis of Title {subject} : {count}.")
                 headings = ["S.No", "Subject", "Title of the Book", "Author Name", "Publication Date"]
-                print("-" * 156)
-                print(f"| {headings[0]:^10} | {headings[1]:^20} | {headings[2]:^50} | {headings[3]:^30} | "
-                      f"{headings[4]:^30} |")
-                print("-" * 156)
+                print("-" * 167)
+                print(f"| {headings[0]:^6} | {headings[1]:^35} | {headings[2]:^55} | {headings[3]:^30} | "
+                      f"{headings[4]:^25} |")
+                print("-" * 167)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i + 1):^10} | {successful_search[i][2]:^20} | {successful_search[i][0]:^50} "
-                          f"| {successful_search[i][1]:^30} | {successful_search[i][3]:^30} |")
-                print("-" * 156)
+                    print(f"| {str(i + 1):^6} | {successful_search[i][2]:<35} | {successful_search[i][0]:<55}"
+                          f"| {successful_search[i][1]:<30} | {successful_search[i][3]:<25} |")
+                print("-" * 167)
             else:
                 print("No data Found...")
 
@@ -283,20 +301,20 @@ class Library_Management_System:
             successful_search = []
             publication_date = input("Enter Date of publication in format (DD/MM/YYYY) : ")
             for i in range(len(self.details)):
-                if publication_date == self.details[i][3]:
+                if publication_date in self.details[i][3]:
                     count += 1
                     successful_search.append(self.details[i])
             if count != 0:
                 print(f"Total Searches on basis of Title {publication_date} : {count}.")
                 headings = ["S.No", "Publication Date", "Title of the Book", "Author Name", "Subject"]
-                print("-" * 156)
-                print(f"| {headings[0]:^10} | {headings[1]:^30} | {headings[2]:^50} | {headings[3]:^30} | "
-                      f"{headings[4]:^20} |")
-                print("-" * 156)
+                print("-" * 167)
+                print(f"| {headings[0]:^6} | {headings[1]:^25} | {headings[2]:^55} | {headings[3]:^30} | "
+                      f"{headings[4]:^35} |")
+                print("-" * 167)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i + 1):^10} | {successful_search[i][3]:^30} | {successful_search[i][0]:^50} "
-                          f"| {successful_search[i][1]:^30} | {successful_search[i][2]:^20} |")
-                print("-" * 156)
+                    print(f"| {str(i + 1):^6} | {successful_search[i][3]:<25} | {successful_search[i][0]:<55} "
+                          f"| {successful_search[i][1]:<30} | {successful_search[i][2]:<35} |")
+                print("-" * 167)
             else:
                 print("No data Found...")
 
@@ -315,20 +333,26 @@ class Library_Management_System:
         returned_book = input("Enter the Book you want to Return to the Library : ")
 
         opening = open(f"{self.email}_Books_Issue.txt", "a+")
+        opening.seek(0)
         getting_details = opening.read()
         issued_books = list(getting_details.split(","))
         opening.close()
 
-        if returned_book in issued_books:
+        check = 0
+        for k in range(len(issued_books)):
+            if returned_book == issued_books[k]:
+                print(f"The Book {returned_book} is returned to the library...")
+                check = 1
+        if check == 1:
             issued_books.remove(returned_book)
-            print(f"The Book {returned_book} is returned to the library...")
-        else:
+            new_opening = open(f"{self.email}_Books_Issue.txt", "w")
+            if len(issued_books) > 0:
+                for j in range(len(issued_books)):
+                    if len(issued_books[j]) > 1:
+                        new_opening.write(issued_books[j] + ",")
+                new_opening.close()
+        elif check == 0:
             print(f"You did not issue this Book {returned_book}...")
-
-        new_opening = open(f"{self.email}_Books_Issue.txt", "w")
-        for i in range(len(issued_books)):
-            new_opening.write(issued_books[i] + ",")
-        new_opening.close()
 
     def Renew_Book(self):
         renew_book = input("Enter the Book you want to Renew to the Library : ")
@@ -393,7 +417,7 @@ if __name__ == "__main__":
         print("*" * 35)
         print(f"Welcome to Library Book Store {username}!!!")
         print("Here are the options : \n(1) See the Whole Collection Of Books\n(2) Register Account\n"
-              "(3) Login Account\n(4) Cancel Membership\n(5)See Sorted Collection Of Books\n(6) Search the Book "
+              "(3) Login Account\n(4) Cancel Membership\n(5) See Sorted Collection Of Books\n(6) Search the Book\n"
               "(7) Add Book\n(8) Delete Book\n(9) Modify Book\n(10) Reserve a Book\n(11) Return a Book\n"
               "(12) Renew a Book\n(13) Checkout\n(14) Exit")
         option = input("Enter Key : ")
@@ -433,7 +457,7 @@ if __name__ == "__main__":
             if username == "":
                 print("Login first to Proceed...")
             else:
-                c3 = Library.Modify_Book()
+                c3 = Library.Modify_Book(cart)
                 cart = c3
         elif option == "10":
             if username == "":
@@ -454,10 +478,12 @@ if __name__ == "__main__":
             if username == "":
                 print("Login first to Proceed...")
             else:
-                e = Library.Check_out_book()
+                e = Library.Check_out_book(cart)
                 if e == "end":
                     print("Thanks for visiting the Library!!!")
                     break
+                elif e == "not end":
+                    continue
         elif option == "14":
             print("Thanks for visiting the Library!!!")
             break
