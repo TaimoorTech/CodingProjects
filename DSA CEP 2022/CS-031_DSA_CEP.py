@@ -79,7 +79,7 @@ class Library_Management_System:
         else:
             return self.username
 
-    def Display_Whole_Collection_Of_Books(self):
+    def See_Whole_Collection_Of_Books(self):
         self.details = []
 
         f = open("List_of_books.txt", "r")
@@ -344,10 +344,34 @@ class Library_Management_System:
         else:
             print(f"The Book {renew_book} is not present in your Issued_books list...")
 
-    def Merge_sort(self):
-        self.details = []
-        merge_list = []
+    def Merge_sort(self, details):
+        if len(details) <= 1:
+            return details
 
+        mid = int(len(details)/2)
+        left, right = self.Merge_sort(details[:mid]), self.Merge_sort(details[mid:])
+
+        return self.merging(left, right)
+
+    def merging(self, left, right):
+        sorted = []
+        left_p = 0
+        right_p = 0
+
+        while left_p < len(left) and right_p < len(right):
+
+            if left[left_p] < right[right_p]:
+                sorted.append(left[left_p])
+                left_p += 1
+
+            else:
+                sorted.append(right[right_p])
+                right_p += 1
+
+        sorted.extend(left[left_p:])
+        sorted.extend(right[right_p:])
+
+        return sorted
 
 if __name__ == "__main__":
     username = ""
@@ -362,7 +386,7 @@ if __name__ == "__main__":
               "(12) Renew a Book\n(13) Checkout\n(14) Exit")
         option = input("Enter Key : ")
         if option == "1":
-            Library.Display_Whole_Collection_Of_Books()
+            Library.See_Whole_Collection_Of_Books()
         elif option == "2":
             Library.Register_Account()
         elif option == "3":
@@ -371,7 +395,16 @@ if __name__ == "__main__":
         elif option == "4":
             Library.Cancel_Membership()
         elif option == "5":
-            Library.Merge_sort()
+            details = []
+            f = open("List_of_books.txt", "r")
+            content = f.readlines()
+            for i in range(len(content)):
+                displaying = list(content[i].split(","))
+                details.append(displaying[0])
+            f.close()
+            print(details)
+            s = Library.Merge_sort(details)
+            print(s)
         elif option == "6":
             Library.Search()
         elif option == "7":
