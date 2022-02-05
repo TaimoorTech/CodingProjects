@@ -56,7 +56,6 @@ class Library_Management_System:
             registering.write(f"{registered_emails[i][0]},{registered_emails[i][1]},{registered_emails[i][2]},"
                               f"{registered_emails[i][3]},{registered_emails[i][4]},{registered_emails[i][5]},\n")
 
-
     def Login_Account(self):
         self.count = 0
         f = open('Registered_Accounts.txt', 'a+')
@@ -90,9 +89,9 @@ class Library_Management_System:
         f.close()
 
         headings = ["Book Title", "Author Name", "Subject", "Publication Date"]
-        print("-"*143)
+        print("-" * 143)
         print(f"| {headings[0]:^50} | {headings[1]:^30} | {headings[2]:^25} | {headings[3]:^25} |")
-        print("-"*143)
+        print("-" * 143)
         for i in range(len(self.details)):
             print(f"| {self.details[i][0]:^50} | {self.details[i][1]:^30} | {self.details[i][2]:^25} | "
                   f"{self.details[i][3]:^25} |")
@@ -229,7 +228,7 @@ class Library_Management_System:
                       f"{headings[4]:^30} |")
                 print("-" * 156)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i+1):^10} | {successful_search[i][0]:^50} | {successful_search[i][1]:^30} "
+                    print(f"| {str(i + 1):^10} | {successful_search[i][0]:^50} | {successful_search[i][1]:^30} "
                           f"| {successful_search[i][2]:^20} | {successful_search[i][3]:^30} |")
                 print("-" * 156)
             else:
@@ -251,7 +250,7 @@ class Library_Management_System:
                       f"{headings[4]:^30} |")
                 print("-" * 156)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i+1):^10} | {successful_search[i][1]:^30} | {successful_search[i][0]:^50} "
+                    print(f"| {str(i + 1):^10} | {successful_search[i][1]:^30} | {successful_search[i][0]:^50} "
                           f"| {successful_search[i][2]:^20} | {successful_search[i][3]:^30} |")
                 print("-" * 156)
             else:
@@ -273,7 +272,7 @@ class Library_Management_System:
                       f"{headings[4]:^30} |")
                 print("-" * 156)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i+1):^10} | {successful_search[i][2]:^20} | {successful_search[i][0]:^50} "
+                    print(f"| {str(i + 1):^10} | {successful_search[i][2]:^20} | {successful_search[i][0]:^50} "
                           f"| {successful_search[i][1]:^30} | {successful_search[i][3]:^30} |")
                 print("-" * 156)
             else:
@@ -295,7 +294,7 @@ class Library_Management_System:
                       f"{headings[4]:^20} |")
                 print("-" * 156)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i+1):^10} | {successful_search[i][3]:^30} | {successful_search[i][0]:^50} "
+                    print(f"| {str(i + 1):^10} | {successful_search[i][3]:^30} | {successful_search[i][0]:^50} "
                           f"| {successful_search[i][1]:^30} | {successful_search[i][2]:^20} |")
                 print("-" * 156)
             else:
@@ -348,7 +347,7 @@ class Library_Management_System:
         if len(details) <= 1:
             return details
 
-        mid = int(len(details)/2)
+        mid = int(len(details) / 2)
         left, right = self.Merge_sort(details[:mid]), self.Merge_sort(details[mid:])
 
         return self.merging(left, right)
@@ -372,6 +371,19 @@ class Library_Management_System:
         sorted.extend(right[right_p:])
 
         return sorted
+
+    def sorted_books(self, s_books):
+        self.details = []
+        self.details = s_books
+        headings = ["Book Title", "Author Name", "Subject", "Publication Date"]
+        print("-" * 143)
+        print(f"| {headings[0]:^50} | {headings[1]:^30} | {headings[2]:^25} | {headings[3]:^25} |")
+        print("-" * 143)
+        for i in range(len(self.details)):
+            print(f"| {self.details[i][0]:^50} | {self.details[i][1]:^30} | {self.details[i][2]:^25} | "
+                  f"{self.details[i][3]:^25} |")
+        print("-" * 143)
+
 
 if __name__ == "__main__":
     username = ""
@@ -400,11 +412,9 @@ if __name__ == "__main__":
             content = f.readlines()
             for i in range(len(content)):
                 displaying = list(content[i].split(","))
-                details.append(displaying[0])
+                details.append(displaying)
             f.close()
-            print(details)
-            s = Library.Merge_sort(details)
-            print(s)
+            Library.sorted_books(Library.Merge_sort(details))
         elif option == "6":
             Library.Search()
         elif option == "7":
