@@ -89,13 +89,13 @@ class Library_Management_System:
         f.close()
 
         headings = ["Book Title", "Author Name", "Subject", "Publication Date"]
-        print("-" * 143)
-        print(f"| {headings[0]:^50} | {headings[1]:^30} | {headings[2]:^25} | {headings[3]:^25} |")
-        print("-" * 143)
+        print("-" * 158)
+        print(f"| {headings[0]:^55} | {headings[1]:^30} | {headings[2]:^35} | {headings[3]:^25} |")
+        print("-" * 158)
         for i in range(len(self.details)):
-            print(f"| {self.details[i][0]:^50} | {self.details[i][1]:^30} | {self.details[i][2]:^25} | "
-                  f"{self.details[i][3]:^25} |")
-        print("-" * 143)
+            print(f"| {self.details[i][0]:<55} | {self.details[i][1]:<30} | {self.details[i][2]:<35} | "
+                  f"{self.details[i][3]:<25} |")
+        print("-" * 158)
 
     def Add_Book(self, cart=[]):
         cart_of_user = cart
@@ -185,7 +185,7 @@ class Library_Management_System:
 
         headings = ["S.No", "Title of the Book", "Issue Date", "Issue Time"]
         print("-" * 133)
-        print(f"| {headings[0]:^10} | {headings[1]:^50} | {headings[2]:^30} | {headings[3]:^30}")
+        print(f"| {headings[0]:^10} | {headings[1]:^60} | {headings[2]:^30} | {headings[3]:^30}")
         print("-" * 133)
         count = 0
         for i in range(len(cart_of_user)):
@@ -376,13 +376,13 @@ class Library_Management_System:
         self.details = []
         self.details = s_books
         headings = ["Book Title", "Author Name", "Subject", "Publication Date"]
-        print("-" * 143)
-        print(f"| {headings[0]:^50} | {headings[1]:^30} | {headings[2]:^25} | {headings[3]:^25} |")
-        print("-" * 143)
+        print("-" * 158)
+        print(f"| {headings[0]:^55} | {headings[1]:^30} | {headings[2]:^35} | {headings[3]:^25} |")
+        print("-" * 158)
         for i in range(len(self.details)):
-            print(f"| {self.details[i][0]:^50} | {self.details[i][1]:^30} | {self.details[i][2]:^25} | "
-                  f"{self.details[i][3]:^25} |")
-        print("-" * 143)
+            print(f"| {self.details[i][0]:<55} | {self.details[i][1]:<30} | {self.details[i][2]:<35} | "
+                  f"{self.details[i][3]:<25} |")
+        print("-" * 158)
 
 
 if __name__ == "__main__":
