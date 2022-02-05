@@ -26,7 +26,7 @@ class Library_Management_System:
             else:
                 break
         self.password = input("Enter password : ")
-        registering = open('User Registration.txt', 'a')
+        registering = open('Registered_Accounts.txt', 'a')
         registering.write(f"{time.strftime('%d/%m/%Y')},{time.strftime('%H:%M:%S')},{self.user_name},{self.age},"
                           f"{self.email}, {self.password},\n")
         registering.close()
@@ -40,12 +40,22 @@ class Library_Management_System:
         self.check_EmailID = input('Enter Email ID: ')
         self.check_pwd = input('Enter password: ')
         confirm = input("Press Y to confirm : ")
+        y = 0
         if confirm == "Y":
             for i in range(len(registered_emails)):
                 check = registered_emails[i].split(",")
                 if self.check_EmailID == check[4] and self.check_pwd == check[5]:
                     registered_emails.pop(i)
                     print("Membership is cancelled...")
+                    y = 1
+                    break
+        if y == 1:
+            print("Membership Cancelling Failed...")
+        for i in range(len(registered_emails)):
+            registering = open('Registered_Accounts.txt', 'w')
+            registering.write(f"{registered_emails[i][0]},{registered_emails[i][1]},{registered_emails[i][2]},"
+                              f"{registered_emails[i][3]},{registered_emails[i][4]},{registered_emails[i][5]},\n")
+
 
     def Login_Account(self):
         self.count = 0
@@ -53,25 +63,26 @@ class Library_Management_System:
         f.seek(0)
         convert = f.readlines()
         f.close()
-        self.check_EmailID = input('Enter Email ID: ')
+        check_EmailID = input('Enter Email ID: ')
         self.check_pwd = input('Enter password: ')
         for i in convert:
             check = i.split(",")
-            if self.check_EmailID == check[4] and self.check_pwd == check[5]:
+            if check_EmailID == check[4] and self.check_pwd == check[5]:
                 print('You are logged in!')
                 self.count = 1
                 self.username = check[2]
+                self.email = check_EmailID
                 break
         if self.count == 0:
             print('Incorrect ID or password...Try again!')
             return "", ""
         else:
-            return self.username, self.check_EmailID
+            return self.username
 
     def Display_Whole_Collection_Of_Books(self):
         self.details = []
 
-        f = open("books_information.txt", "r")
+        f = open("List_of_books.txt", "r")
         content = f.readlines()
         for i in range(len(content)):
             displaying = list(content[i].split(","))
@@ -92,7 +103,7 @@ class Library_Management_System:
         self.book_names = []
         self.details = []
 
-        f = open("books_information.txt", "r")
+        f = open("List_of_books.txt", "r")
         content = f.readlines()
         for i in range(len(content)):
             displaying = list(content[i].split(","))
@@ -119,7 +130,7 @@ class Library_Management_System:
         self.book_names = []
         self.details = []
 
-        f = open("books_information.txt", "r")
+        f = open("List_of_books.txt", "r")
         content = f.readlines()
         for i in range(len(content)):
             displaying = list(content[i].split(","))
@@ -146,7 +157,7 @@ class Library_Management_System:
         self.book_names = []
         self.details = []
 
-        f = open("books_information.txt", "r")
+        f = open("List_of_books.txt", "r")
         content = f.readlines()
         for i in range(len(content)):
             displaying = list(content[i].split(","))
@@ -166,7 +177,7 @@ class Library_Management_System:
 
         return cart_of_user
 
-    def check_out_book(self, cart=[]):
+    def Check_out_book(self, cart=[]):
         if len(cart) == 0:
             print("Your cart is empty...")
             return
@@ -192,7 +203,7 @@ class Library_Management_System:
 
     def Search(self):
         self.details = []
-        f = open("books_information.txt", "r")
+        f = open("List_of_books.txt", "r")
         content = f.readlines()
         for i in range(len(content)):
             displaying = list(content[i].split(","))
@@ -337,17 +348,73 @@ class Library_Management_System:
         self.details = []
         merge_list = []
 
+
 if __name__ == "__main__":
-    username=""
+    username = ""
+    cart = []
+    Library = Library_Management_System()
     while True:
         print("*" * 35)
-        print("Welcome to Dream Online Shopping Store {}!!!".format((username)))
-        print("Here are the options : \n(1) Display Products\n(2) Add the Products to the Cart\n"
-              "(3) Remove the Products from the Cart\n(4) View the Cart\n(5) View Shopping History"
-              "\n(6) Checkout\n(7) Register to your Account\n(8) Login into your account\n"
-              "(9) Login to your Another Account\n(10) Login as Administrator\n(11) Exit")
-
-
-Library = Library_Management_System()
-Library.Display_Whole_Collection_Of_Books()
-Library.Search()
+        print(f"Welcome to Library Book Store {username}!!!")
+        print("Here are the options : \n(1) See the Whole Collection Of Books\n(2) Register Account\n"
+              "(3) Login Account\n(4) Cancel Membership\n(5)See Sorted Collection Of Books\n(6) Search the Book "
+              "(7) Add Book\n(8) Delete Book\n(9) Modify Book\n(10) Reserve a Book\n(11) Return a Book\n"
+              "(12) Renew a Book\n(13) Checkout\n(14) Exit")
+        option = input("Enter Key : ")
+        if option == "1":
+            Library.Display_Whole_Collection_Of_Books()
+        elif option == "2":
+            Library.Register_Account()
+        elif option == "3":
+            s = Library.Login_Account()
+            username = s
+        elif option == "4":
+            Library.Cancel_Membership()
+        elif option == "5":
+            Library.Merge_sort()
+        elif option == "6":
+            Library.Search()
+        elif option == "7":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                c1 = Library.Add_Book(cart)
+                cart = c1
+        elif option == "8":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                c2 = Library.Delete_Book(cart)
+                cart = c2
+        elif option == "9":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                c3 = Library.Modify_Book()
+                cart = c3
+        elif option == "10":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                Library.Reserve_Book()
+        elif option == "11":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                Library.Return_Book()
+        elif option == "12":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                Library.Renew_Book()
+        elif option == "13":
+            if username == "":
+                print("Login first to Proceed...")
+            else:
+                e = Library.Check_out_book()
+                if e == "end":
+                    print("Thanks for visiting the Library!!!")
+                    break
+        elif option == "14":
+            print("Thanks for visiting the Library!!!")
+            break
