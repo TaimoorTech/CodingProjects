@@ -415,7 +415,7 @@ if __name__ == "__main__":
     Library = Library_Management_System()
     while True:
         print("*" * 35)
-        print(f"Welcome to Library Book Store {username}!!!")
+        print(f"Welcome to Classic Library {username}!!!")
         print("Here are the options : \n(1) See the Whole Collection Of Books\n(2) Register Account\n"
               "(3) Login Account\n(4) Cancel Membership\n(5) See Sorted Collection Of Books\n(6) Search the Book\n"
               "(7) Add Book\n(8) Delete Book\n(9) Modify Book\n(10) Reserve a Book\n(11) Return a Book\n"
@@ -480,10 +480,10 @@ if __name__ == "__main__":
             else:
                 e = Library.Check_out_book(cart)
                 if e == "end":
-                    print("Thanks for visiting the Library!!!")
+                    print("Thanks for visiting the Classic Library!!!")
                     break
                 elif e == "not end":
                     continue
         elif option == "14":
-            print("Thanks for visiting the Library!!!")
+            print("Thanks for visiting the Classic Library!!!")
             break
