@@ -3,19 +3,32 @@ package com.example.playingaudio;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
+
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,31 +43,29 @@ public class MainActivity extends AppCompatActivity {
     private ImageView next;
     private ImageView previous;
     private SurfaceView surfaceView;
+    ArrayList<File> items1 = new ArrayList<>();
+    String[] download_songs1;
     public int i=0;
     String var;
-    Field[] fields = R.raw.class.getFields();
 
-    protected void setMediaPlayer(){
-        if (i == fields.length) {
+    protected void setMediaPlayer(ArrayList<File> item, String[] downloads){
+
+        if (i == item.size()) {
             i = 0;
         }
-        var = fields[i].getName();
+        var = downloads[i];
         textView.setText(var);
         mediaPlayer2.pause();
-        try {
-            mediaPlayer = MediaPlayer.create(getApplicationContext(),
-                    fields[i].getInt(var));
-            seekBar.setMax(mediaPlayer.getDuration());
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        Uri uri = Uri.parse(item.get(i).toString());
+        mediaPlayer = MediaPlayer.create(MainActivity.this, uri);
+        seekBar.setMax(mediaPlayer.getDuration());
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 i++;
                 mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
-                setMediaPlayer();
+                setMediaPlayer(item, downloads);
                 mediaPlayer.start();
             }
         });
@@ -63,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent intent2 = getIntent();
+        Bundle bundle = intent2.getExtras();
+        items1 = (ArrayList) bundle.getParcelableArrayList("song");
+        download_songs1 = intent2.getStringArrayExtra("converted");
         try {
             AssetFileDescriptor afd = getAssets().openFd("beatsbars.mp4");
             mediaPlayer2.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),afd.getLength());
@@ -96,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.imageView);
         seekBar = findViewById(R.id.seekBar);
         textView = findViewById(R.id.textView);
-        var = fields[i].getName();
+        var = download_songs1[i];
         textView.setText(var);
         try {
             mediaPlayer2.prepare();
@@ -105,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
         mediaPlayer2.setLooping(true);
         mediaPlayer2.start();
-        setMediaPlayer();
+        setMediaPlayer(items1, download_songs1);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
                 i++;
-                setMediaPlayer();
+                setMediaPlayer(items1, download_songs1);
                 mediaPlayer.start();
                 mediaPlayer2.start();
             }
@@ -157,14 +171,14 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
                 if(i == 0){
-                    i = fields.length - 1;
-                    setMediaPlayer();
+                    i =  download_songs1.length - 1;
+                    setMediaPlayer(items1, download_songs1);
                     mediaPlayer.start();
                     mediaPlayer2.start();
                 }
                 else{
                     i--;
-                    setMediaPlayer();
+                    setMediaPlayer(items1, download_songs1);
                     mediaPlayer.start();
                     mediaPlayer2.start();
                 }
@@ -189,4 +203,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

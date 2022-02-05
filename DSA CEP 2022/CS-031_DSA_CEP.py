@@ -37,7 +37,7 @@ class Library_Management_System:
         registering.close()
         print("Your Account has been Registered!")
 
-    def Cancel_Membership(self):
+    def Cancel_Membership(self, email):
         account_details = []
         f = open('Registered_Accounts.txt', 'a+')
         f.seek(0)
@@ -51,21 +51,29 @@ class Library_Management_System:
         self.check_pwd = input('Enter password: ')
         confirm = input("Press Y to confirm : ")
         y = 0
+        e = 0
         if confirm == "Y":
             for i in range(len(registered_emails)):
                 if check_EmailID == account_details[i][4] and self.check_pwd == account_details[i][5]:
                     account_details.pop(i)
                     print("Membership is cancelled...")
                     y = 1
+                    if email == check_EmailID:
+                        e = 1
                     break
 
         if y == 1:
-            for i in range(len(account_details)):
-                if len(account_details[i]) > 0:
+            if len(account_details) > 0:
+                for i in range(len(account_details)):
                     registering = open('Registered_Accounts.txt', 'w')
                     registering.write(f"{account_details[i][0]},{account_details[i][1]},{account_details[i][2]},"
-                                      f"{account_details[i][3]},{account_details[i][4]},{account_details[i][5]},\n")
+                                          f"{account_details[i][3]},{account_details[i][4]},{account_details[i][5]},\n")
                     registering.close()
+            else:
+                registering1 = open('Registered_Accounts.txt', 'w')
+                registering1.close()
+        if e == 1:
+            return ""
         elif y == 0:
             print("Membership Cancelling Failed...")
 
@@ -87,9 +95,9 @@ class Library_Management_System:
                 break
         if self.count == 0:
             print('Incorrect ID or password...Try again!')
-            return ""
+            return "",""
         else:
-            return self.username
+            return self.username, self.email
 
     def See_Whole_Collection_Of_Books(self):
         self.details = []
@@ -187,10 +195,13 @@ class Library_Management_System:
         check = 0
         self.modify_book = input("Enter Book Name you want to modify : ")
         for i in range(len(self.book_names)):
-            if self.modify_book == self.book_names[i]:
+            if self.modify_book == self.book_names[i] and self.modify_book in cart_of_user:
                 self.new_book = input(f"Enter the Book Name you want to add in replace of Book {self.modify_book}: ")
-                cart_of_user.remove(self.modify_book)
-                cart_of_user.append(self.new_book)
+                try:
+                    cart_of_user.remove(self.modify_book)
+                    cart_of_user.append(self.new_book)
+                except Exception:
+                    pass
                 print(f"The Book {self.new_book} is being modified with the Book {self.modify_book}...")
                 check = 1
         if check == 0:
@@ -300,7 +311,7 @@ class Library_Management_System:
                       f"{headings[4]:^25} |")
                 print("-" * 167)
                 for i in range(len(successful_search)):
-                    print(f"| {str(i + 1):^6} | {successful_search[i][2]:<35} | {successful_search[i][0]:<55}"
+                    print(f"| {str(i + 1):^6} | {successful_search[i][2]:<35} | {successful_search[i][0]:<55} "
                           f"| {successful_search[i][1]:<30} | {successful_search[i][3]:<25} |")
                 print("-" * 167)
             else:
@@ -368,6 +379,7 @@ class Library_Management_System:
         renew_book = input("Enter the Book you want to Renew to the Library : ")
 
         opening = open(f"{self.email}_Books_Issue.txt", "a+")
+        opening.seek(0)
         getting_details = opening.read()
         issued_books = list(getting_details.split(","))
         opening.close()
@@ -420,26 +432,32 @@ class Library_Management_System:
 
 
 if __name__ == "__main__":
+    em = ""
     username = ""
     cart = []
     Library = Library_Management_System()
     while True:
-        print("*" * 35)
+        print("-" * 100)
         print(f"Welcome to Classic Library {username}!!!")
         print("Here are the options : \n(1) See the Whole Collection Of Books\n(2) Register Account\n"
               "(3) Login Account\n(4) Cancel Membership\n(5) See Sorted Collection Of Books\n(6) Search the Book\n"
               "(7) Add Book\n(8) Delete Book\n(9) Modify Book\n(10) Reserve a Book\n(11) Return a Book\n"
               "(12) Renew a Book\n(13) Checkout\n(14) Exit")
+        print("-" * 100)
         option = input("Enter Key : ")
+        print("-" * 100)
         if option == "1":
             Library.See_Whole_Collection_Of_Books()
         elif option == "2":
             Library.Register_Account()
         elif option == "3":
             s = Library.Login_Account()
-            username = s
+            username = s[0]
+            em = s[1]
         elif option == "4":
-            Library.Cancel_Membership()
+            s1 = Library.Cancel_Membership(em)
+            if s1 == "":
+                username = s1
         elif option == "5":
             details = []
             f = open("List_of_books.txt", "r")
@@ -497,3 +515,4 @@ if __name__ == "__main__":
         elif option == "14":
             print("Thanks for visiting the Classic Library!!!")
             break
+        
