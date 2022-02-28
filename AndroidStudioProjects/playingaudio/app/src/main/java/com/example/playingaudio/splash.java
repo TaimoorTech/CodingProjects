@@ -18,6 +18,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class splash extends AppCompatActivity {
     ArrayList<File> items = new ArrayList<>();
@@ -35,8 +36,8 @@ public class splash extends AppCompatActivity {
                             .withListener(new PermissionListener() {
                                 @Override
                                 public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                                    Toast.makeText(splash.this, "Permission Granted", Toast.LENGTH_LONG).show();
                                     items = mp3Songs(Environment.getExternalStorageDirectory());
+                                    Collections.sort(items);
                                     download_songs = new String[items.size()];
                                     for(int j=0; j<items.size(); j++){
                                         download_songs[j] = items.get(j).getName().replace(".mp3", "");
@@ -54,7 +55,7 @@ public class splash extends AppCompatActivity {
                                 }
                             })
                             .check();
-                    sleep(2000);
+                    sleep(2500);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
