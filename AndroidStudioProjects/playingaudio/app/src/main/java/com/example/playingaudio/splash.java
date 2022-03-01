@@ -1,4 +1,3 @@
-
 package com.example.playingaudio;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,39 +26,38 @@ public class splash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        Dexter.withContext(splash.this)
+                .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                        items = mp3Songs(Environment.getExternalStorageDirectory());
+                        Collections.sort(items);
+                        download_songs = new String[items.size()];
+                        for(int j=0; j<items.size(); j++){
+                            download_songs[j] = items.get(j).getName().replace(".mp3", "");
+                        }
+                    }
 
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                        permissionToken.continuePermissionRequest();
+                    }
+                })
+                .check();
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    Dexter.withContext(splash.this)
-                            .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                            .withListener(new PermissionListener() {
-                                @Override
-                                public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                                    items = mp3Songs(Environment.getExternalStorageDirectory());
-                                    Collections.sort(items);
-                                    download_songs = new String[items.size()];
-                                    for(int j=0; j<items.size(); j++){
-                                        download_songs[j] = items.get(j).getName().replace(".mp3", "");
-                                    }
-                                }
-
-                                @Override
-                                public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-
-                                }
-
-                                @Override
-                                public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                                    permissionToken.continuePermissionRequest();
-                                }
-                            })
-                            .check();
                     sleep(2500);
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent = new Intent(splash.this, MainActivity.class);
+                    Intent intent = new Intent(splash.this, list_of_songs.class);
                     intent.putExtra("song", items);
                     intent.putExtra("converted", download_songs);
                     startActivity(intent);
