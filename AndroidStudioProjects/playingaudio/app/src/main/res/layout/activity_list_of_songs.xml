@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#434E6C"
     tools:context=".list_of_songs">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycling"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:background="#434E6C"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

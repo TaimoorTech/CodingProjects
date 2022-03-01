@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
     private SurfaceView surfaceView;
     ArrayList<File> items1 = new ArrayList<>();
     String[] download_songs1;
-    public int i=0;
+    public int i;
     String var;
 
-    protected void setMediaPlayer(ArrayList<File> item, String[] downloads){
-
+    protected void setMediaPlayer(ArrayList<File> item, String[] downloads, int pos){
+        i = pos;
         if (i == item.size()) {
             i = 0;
         }
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 i++;
                 mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
-                setMediaPlayer(item, downloads);
+                setMediaPlayer(item, downloads, i);
                 mediaPlayer.start();
             }
         });
@@ -75,9 +75,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent2 = getIntent();
-        Bundle bundle = intent2.getExtras();
-        items1 = (ArrayList) bundle.getParcelableArrayList("song");
-        download_songs1 = intent2.getStringArrayExtra("converted");
+        Bundle bundle1 = intent2.getExtras();
+        items1 = (ArrayList) bundle1.getParcelableArrayList("arraylist");
+        download_songs1 = intent2.getStringArrayExtra("list");
+        i = intent2.getIntExtra("position", 0);
         try {
             AssetFileDescriptor afd = getAssets().openFd("beatsbars.mp4");
             mediaPlayer2.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),afd.getLength());
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         }
         mediaPlayer2.setLooping(true);
         mediaPlayer2.start();
-        setMediaPlayer(items1, download_songs1);
+        setMediaPlayer(items1, download_songs1, i);
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
                 i++;
-                setMediaPlayer(items1, download_songs1);
+                setMediaPlayer(items1, download_songs1, i);
                 mediaPlayer.start();
                 mediaPlayer2.start();
             }
@@ -172,13 +173,13 @@ public class MainActivity extends AppCompatActivity {
                 play.setImageResource(R.drawable.pause);
                 if(i == 0){
                     i =  download_songs1.length - 1;
-                    setMediaPlayer(items1, download_songs1);
+                    setMediaPlayer(items1, download_songs1, i);
                     mediaPlayer.start();
                     mediaPlayer2.start();
                 }
                 else{
                     i--;
-                    setMediaPlayer(items1, download_songs1);
+                    setMediaPlayer(items1, download_songs1, i);
                     mediaPlayer.start();
                     mediaPlayer2.start();
                 }

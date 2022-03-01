@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class list_of_songs extends AppCompatActivity {
     RecyclerView recyclerView;
     String[] downloads;
+    ArrayList<File> items4 = new ArrayList<File>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +21,12 @@ public class list_of_songs extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_songs);
         recyclerView = findViewById(R.id.recycling);
         Intent intent3 = getIntent();
+        Bundle bundle = intent3.getExtras();
+        items4 = (ArrayList) bundle.getParcelableArrayList("song");
         downloads = intent3.getStringArrayExtra("converted");
 
-        recycling_songs adapter = new recycling_songs(this, downloads);
+
+        recycling_songs adapter = new recycling_songs(this, downloads, items4);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
