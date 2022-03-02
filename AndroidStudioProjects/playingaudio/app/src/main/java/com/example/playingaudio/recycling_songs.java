@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyViewHolder> {
     String[] songs;
     Context context;
-    ArrayList<File> real_songs = new ArrayList<>();
+    ArrayList<File> real_songs;
 
     public recycling_songs(Context c, String[] song, ArrayList<File> s2){
         songs = song;
@@ -34,7 +34,13 @@ public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyView
         View setting_view = inflater.inflate(R.layout.designing_songs, parent, false);
         return new MyViewHolder(setting_view);
     }
+    public void filter(Context c, String[] song1, ArrayList<File> s3){
+        context = c;
+        songs = song1;
+        real_songs = s3;
+        notifyDataSetChanged();
 
+    }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.song_name.setText(songs[position]);
@@ -60,6 +66,7 @@ public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyView
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
