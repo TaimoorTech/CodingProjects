@@ -7,6 +7,7 @@
     android:background="#434E6C"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="250dp"
@@ -18,7 +19,7 @@
         android:maxLength="50"
         android:text=" "
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

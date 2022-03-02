@@ -48,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
     public int i;
     String var;
 
+    @Override
+    public void onBackPressed() {
+        mediaPlayer.stop();
+        super.onBackPressed();
+    }
+
     protected void setMediaPlayer(ArrayList<File> item, String[] downloads, int pos){
         i = pos;
         if (i == item.size()) {
@@ -57,16 +63,17 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(var);
         mediaPlayer2.pause();
         Uri uri = Uri.parse(item.get(i).toString());
-        mediaPlayer = MediaPlayer.create(MainActivity.this, uri);
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
+        mediaPlayer.start();
+        mediaPlayer2.start();
+        play.setImageResource(R.drawable.pause);
         seekBar.setMax(mediaPlayer.getDuration());
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 i++;
-                mediaPlayer.release();
                 play.setImageResource(R.drawable.pause);
                 setMediaPlayer(item, downloads, i);
-                mediaPlayer.start();
             }
         });
     }
