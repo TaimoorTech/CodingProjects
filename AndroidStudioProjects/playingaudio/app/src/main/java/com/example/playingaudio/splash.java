@@ -91,7 +91,7 @@ public class splash extends AppCompatActivity {
                     list_of_songs.addAll(mp3Songs(files));
                 }
                 else{
-                    if(files.getName().endsWith("mp3") && !files.getName().startsWith(".")){
+                    if(files.getName().endsWith(".mp3") && !files.getName().startsWith(".")){
                         list_of_songs.add(files);
                     }
                 }
