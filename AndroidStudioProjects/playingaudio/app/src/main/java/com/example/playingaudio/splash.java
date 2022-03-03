@@ -23,7 +23,7 @@ import java.util.Locale;
 
 public class splash extends AppCompatActivity {
     ArrayList<File> items = new ArrayList<>();
-    ArrayList<File> items2 = new ArrayList<>();
+    ArrayList<File> filtered_items = new ArrayList<>();
     String[] download_songs;
 
     @Override
@@ -46,7 +46,7 @@ public class splash extends AppCompatActivity {
                             String check = download_songs[i].toLowerCase(Locale.ROOT);
                             for (int j=0; j<download_songs.length; j++){
                                 if(items.get(j).getName().toLowerCase(Locale.ROOT).equals(check)){
-                                    items2.add(items.get(j));
+                                    filtered_items.add(items.get(j));
                                     break;
                                 }
                             }
@@ -75,7 +75,7 @@ public class splash extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     Intent intent = new Intent(splash.this, list_of_songs.class);
-                    intent.putExtra("song", items2);
+                    intent.putExtra("song", filtered_items);
                     intent.putExtra("converted", download_songs);
                     startActivity(intent);
                 }
