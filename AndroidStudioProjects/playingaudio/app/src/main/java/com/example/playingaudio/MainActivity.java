@@ -62,12 +62,14 @@ public class MainActivity extends AppCompatActivity {
         var = downloads[i];
         textView.setText(var);
         mediaPlayer2.pause();
+
         Uri uri = Uri.parse(item.get(i).toString());
         mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
         mediaPlayer.start();
         mediaPlayer2.start();
         play.setImageResource(R.drawable.pause);
         seekBar.setMax(mediaPlayer.getDuration());
+
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -81,17 +83,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Intent intent2 = getIntent();
         Bundle bundle1 = intent2.getExtras();
         items1 = (ArrayList) bundle1.getParcelableArrayList("arraylist");
         download_songs1 = intent2.getStringArrayExtra("list");
         i = intent2.getIntExtra("position", 0);
+
         try {
             AssetFileDescriptor afd = getAssets().openFd("beatsbars.mp4");
             mediaPlayer2.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),afd.getLength());
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         surfaceView = findViewById(R.id.surfaceView);
         surfaceView.setKeepScreenOn(true);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
@@ -111,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         next = findViewById(R.id.next);
         previous = findViewById(R.id.previous);
         back = findViewById(R.id.back);
@@ -118,16 +124,20 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.imageView);
         seekBar = findViewById(R.id.seekBar);
         textView = findViewById(R.id.textView);
+
         var = download_songs1[i];
         textView.setText(var);
+
         try {
             mediaPlayer2.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         mediaPlayer2.setLooping(true);
         mediaPlayer2.start();
         setMediaPlayer(items1, download_songs1, i);
+
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

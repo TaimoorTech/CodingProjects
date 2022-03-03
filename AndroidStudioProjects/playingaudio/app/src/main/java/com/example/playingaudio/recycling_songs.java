@@ -20,11 +20,15 @@ public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyView
     String[] songs;
     Context context;
     ArrayList<File> real_songs;
+    String[] main_downloads;
+    ArrayList<File> main_songs = new ArrayList<File>();
 
-    public recycling_songs(Context c, String[] song, ArrayList<File> s2){
+    public recycling_songs(Context c, String[] m_song, ArrayList<File> main_arraylist, String[] song, ArrayList<File> change_arraylist){
+        main_downloads = m_song;
+        main_songs = main_arraylist;
         songs = song;
         context = c;
-        real_songs = s2;
+        real_songs = change_arraylist;
     }
 
     @NonNull
@@ -34,12 +38,11 @@ public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyView
         View setting_view = inflater.inflate(R.layout.designing_songs, parent, false);
         return new MyViewHolder(setting_view);
     }
-    public void filter(Context c, String[] song1, ArrayList<File> s3){
+    public void filter(Context c, String[] filtered_song, ArrayList<File> filtered_arraylist){
         context = c;
-        songs = song1;
-        real_songs = s3;
+        songs = filtered_song;
+        real_songs = filtered_arraylist;
         notifyDataSetChanged();
-
     }
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
@@ -49,9 +52,9 @@ public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyView
             @Override
             public void onClick(View v) {
                 Intent intent4 = new Intent(context, MainActivity.class);
-                intent4.putExtra("list", songs);
-                intent4.putExtra("arraylist", real_songs);
-                intent4.putExtra("position", position);
+                intent4.putExtra("list", main_downloads);
+                intent4.putExtra("arraylist", main_songs);
+                intent4.putExtra("position", main_songs.indexOf(real_songs.get(position)));
                 context.startActivity(intent4);
             }
         });
@@ -59,9 +62,9 @@ public class recycling_songs extends RecyclerView.Adapter<recycling_songs.MyView
             @Override
             public void onClick(View v) {
                 Intent intent5 = new Intent(context, MainActivity.class);
-                intent5.putExtra("list", songs);
-                intent5.putExtra("arraylist", real_songs);
-                intent5.putExtra("position", position);
+                intent5.putExtra("list", main_downloads);
+                intent5.putExtra("arraylist", main_songs);
+                intent5.putExtra("position", main_songs.indexOf(real_songs.get(position)));
                 context.startActivity(intent5);
             }
         });

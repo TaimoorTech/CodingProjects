@@ -16,11 +16,10 @@ import java.util.Locale;
 
 public class list_of_songs extends AppCompatActivity {
     RecyclerView recyclerView;
-    String[] downloads;
-    ArrayList<File> items4 = new ArrayList<File>();
+    String[] main_downloads;
+    ArrayList<File> main_songs = new ArrayList<File>();
     private ImageView searches;
     private EditText content;
-    ArrayList<Integer> successful_searches = new ArrayList<>();
     recycling_songs adapter;
 
 
@@ -33,10 +32,9 @@ public class list_of_songs extends AppCompatActivity {
         searches = findViewById(R.id.search_icon);
         Intent intent3 = getIntent();
         Bundle bundle = intent3.getExtras();
-        items4 = (ArrayList) bundle.getParcelableArrayList("song");
-        downloads = intent3.getStringArrayExtra("converted");
-
-        adapter = new recycling_songs(list_of_songs.this, downloads, items4);
+        main_songs = (ArrayList) bundle.getParcelableArrayList("song");
+        main_downloads = intent3.getStringArrayExtra("converted");
+        adapter = new recycling_songs(list_of_songs.this, main_downloads, main_songs, main_downloads, main_songs);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(list_of_songs.this));
         searches.setOnClickListener(new View.OnClickListener() {
@@ -45,19 +43,28 @@ public class list_of_songs extends AppCompatActivity {
             String[] filtered;
             @Override
             public void onClick(View v) {
+                new_songs.clear();
+                new_full_file_songs.clear();
+                filtered = null;
                 String data = content.getText().toString().toLowerCase(Locale.ROOT);
-                for (int i=0; i<downloads.length; i++){
-                    String data2 = downloads[i].toLowerCase(Locale.ROOT);
-                    if(data2.contains(data.toLowerCase(Locale.ROOT))){
-                        new_full_file_songs.add(items4.get(i));
-                        new_songs.add(downloads[i]);
+                if (data.isEmpty()){
+                    adapter.filter(list_of_songs.this, main_downloads, main_songs);
+                }
+                else {
+                    for (int i=0; i<main_downloads.length; i++){
+                        String data2 = main_downloads[i].toLowerCase(Locale.ROOT);
+                        if(data2.contains(data.toLowerCase(Locale.ROOT))){
+                            new_full_file_songs.add(main_songs.get(i));
+                            new_songs.add(main_downloads[i]);
+                        }
                     }
+                    filtered = new String[new_songs.size()];
+                    for (int i=0; i< filtered.length; i++){
+                        filtered[i] = new_songs.get(i);
+                    }
+                    adapter.filter(list_of_songs.this, filtered, new_full_file_songs);
                 }
-                filtered = new String[new_songs.size()];
-                for (int i=0; i< filtered.length; i++){
-                    filtered[i] = new_songs.get(i);
-                }
-                adapter.filter(list_of_songs.this, filtered, new_full_file_songs);
+
             }
         });
     }
