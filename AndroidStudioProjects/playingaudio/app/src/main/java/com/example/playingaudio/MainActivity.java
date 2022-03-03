@@ -175,12 +175,10 @@ public class MainActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.release();
+                mediaPlayer.stop();
                 play.setImageResource(R.drawable.pause);
                 i++;
                 setMediaPlayer(items1, download_songs1, i);
-                mediaPlayer.start();
-                mediaPlayer2.start();
             }
         });
         previous.setOnClickListener(new View.OnClickListener() {
@@ -191,14 +189,10 @@ public class MainActivity extends AppCompatActivity {
                 if(i == 0){
                     i =  download_songs1.length - 1;
                     setMediaPlayer(items1, download_songs1, i);
-                    mediaPlayer.start();
-                    mediaPlayer2.start();
                 }
                 else{
                     i--;
                     setMediaPlayer(items1, download_songs1, i);
-                    mediaPlayer.start();
-                    mediaPlayer2.start();
                 }
             }
         });

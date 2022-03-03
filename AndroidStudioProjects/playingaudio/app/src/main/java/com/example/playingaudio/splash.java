@@ -17,11 +17,15 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Locale;
 
 public class splash extends AppCompatActivity {
     ArrayList<File> items = new ArrayList<>();
+    ArrayList<File> items2 = new ArrayList<>();
     String[] download_songs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +39,20 @@ public class splash extends AppCompatActivity {
                         Collections.sort(items);
                         download_songs = new String[items.size()];
                         for(int j=0; j<items.size(); j++){
-                            download_songs[j] = items.get(j).getName().replace(".mp3", "");
+                            download_songs[j] = items.get(j).getName();
+                        }
+                        Arrays.sort(download_songs, String.CASE_INSENSITIVE_ORDER);
+                        for (int i=0; i<download_songs.length; i++){
+                            String check = download_songs[i].toLowerCase(Locale.ROOT);
+                            for (int j=0; j<download_songs.length; j++){
+                                if(items.get(j).getName().toLowerCase(Locale.ROOT).equals(check)){
+                                    items2.add(items.get(j));
+                                    break;
+                                }
+                            }
+                        }
+                        for(int k=0; k<download_songs.length; k++){
+                            download_songs[k] = download_songs[k].replace(".mp3", "");
                         }
                     }
 
@@ -58,7 +75,7 @@ public class splash extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     Intent intent = new Intent(splash.this, list_of_songs.class);
-                    intent.putExtra("song", items);
+                    intent.putExtra("song", items2);
                     intent.putExtra("converted", download_songs);
                     startActivity(intent);
                 }
