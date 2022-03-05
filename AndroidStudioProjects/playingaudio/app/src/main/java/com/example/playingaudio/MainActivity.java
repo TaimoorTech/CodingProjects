@@ -1,7 +1,10 @@
 package com.example.playingaudio;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.content.Intent;
@@ -11,6 +14,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -19,6 +24,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -47,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
     String[] download_songs1;
     public int i;
     String var;
-
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
+    ImageView three_lines;
     @Override
     public void onBackPressed() {
         mediaPlayer.stop();
@@ -84,12 +93,47 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        navigationView = findViewById(R.id.navmenu);
+        drawerLayout = findViewById(R.id.drawer);
+        three_lines = findViewById(R.id.bars);
+
+        toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+
+        three_lines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+
+
         Intent intent2 = getIntent();
         Bundle bundle1 = intent2.getExtras();
         items1 = (ArrayList) bundle1.getParcelableArrayList("arraylist");
         download_songs1 = intent2.getStringArrayExtra("list");
         i = intent2.getIntExtra("position", 0);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.lists:
+                        mediaPlayer.stop();
+                        Intent intent = new Intent(MainActivity.this, list_of_songs.class);
+                        intent.putExtra("song", items1);
+                        intent.putExtra("converted", download_songs1);
+                        startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                }
+                return true;
+            }
+        });
         try {
             AssetFileDescriptor afd = getAssets().openFd("beatsbars.mp4");
             mediaPlayer2.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),afd.getLength());
