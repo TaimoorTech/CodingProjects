@@ -7,21 +7,27 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class pageViewer_adapter extends FragmentPagerAdapter {
 
-    int tabCounts;
+    int tabCount;
 
     public pageViewer_adapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
-        tabCounts = behavior;
+        tabCount = behavior;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return null;
+        switch (position)
+        {
+            case 0 : return new t_fragment();
+            case 1 : return new h_fragment();
+            case 2 : return new a_fragment();
+            default: return null;
+        }
     }
 
     @Override
     public int getCount() {
-        return tabCounts;
+        return tabCount;
     }
 }

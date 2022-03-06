@@ -9,7 +9,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:text="Assallam u Alaikum , I am Syed Muhammad Arif" />
+        android:gravity="center"
+        android:text="Assallam u Alaikum , I am Syed Muhammad Arif"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/archivo_black"/>
 
 </FrameLayout>

@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".h_fragment">
+    tools:context=".ftab2">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Assallam u Alaikum , I am Syed Muhammad Hussain"
+        android:text="This is Fragment2"
         android:gravity="center"
-        android:fontFamily="@font/archivo_black"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textColor="@color/colorAccent"
+        android:textSize="30dp"
+        />
 
 </FrameLayout>
