@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_200"
+        app:tabIndicatorColor="@color/black"
+        app:tabSelectedTextColor="@color/purple_200"
+        app:tabTextColor="@color/teal_700">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Taimoor"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hussain"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arif"/>
+
+    </com.google.android.material.tabs.TabLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
