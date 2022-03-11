@@ -39,6 +39,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView timing_of_song;
     private SeekBar seekBar;
     private TextView textView;
     private MediaPlayer mediaPlayer;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView previous;
     private SurfaceView surfaceView;
     ArrayList<File> items1 = new ArrayList<>();
+    String[] durations;
     String[] download_songs1;
     public int i;
     String var;
@@ -63,13 +65,14 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    protected void setMediaPlayer(ArrayList<File> item, String[] downloads, int pos){
+    protected void setMediaPlayer(ArrayList<File> item, String[] downloads, int pos, String[] tm){
         i = pos;
         if (i == item.size()) {
             i = 0;
         }
         var = downloads[i];
         textView.setText(var);
+        timing_of_song.setText(durations[i]);
         mediaPlayer2.pause();
 
         Uri uri = Uri.parse(item.get(i).toString());
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 i++;
                 play.setImageResource(R.drawable.pause);
-                setMediaPlayer(item, downloads, i);
+                setMediaPlayer(item, downloads, i, tm);
             }
         });
     }
@@ -115,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle1 = intent2.getExtras();
         items1 = (ArrayList) bundle1.getParcelableArrayList("arraylist");
         download_songs1 = intent2.getStringArrayExtra("list");
+        durations = intent2.getStringArrayExtra("dur");
         i = intent2.getIntExtra("position", 0);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, list_of_songs.class);
                         intent.putExtra("song", items1);
                         intent.putExtra("converted", download_songs1);
+                        intent.putExtra("duration", durations);
                         startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -168,9 +173,11 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.imageView);
         seekBar = findViewById(R.id.seekBar);
         textView = findViewById(R.id.textView);
+        timing_of_song = findViewById(R.id.timing);
 
         var = download_songs1[i];
         textView.setText(var);
+        timing_of_song.setText(durations[i]);
 
         try {
             mediaPlayer2.prepare();
@@ -180,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         mediaPlayer2.setLooping(true);
         mediaPlayer2.start();
-        setMediaPlayer(items1, download_songs1, i);
+        setMediaPlayer(items1, download_songs1, i, durations);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.stop();
                 play.setImageResource(R.drawable.pause);
                 i++;
-                setMediaPlayer(items1, download_songs1, i);
+                setMediaPlayer(items1, download_songs1, i, durations);
             }
         });
         previous.setOnClickListener(new View.OnClickListener() {
@@ -232,11 +239,11 @@ public class MainActivity extends AppCompatActivity {
                 play.setImageResource(R.drawable.pause);
                 if(i == 0){
                     i =  download_songs1.length - 1;
-                    setMediaPlayer(items1, download_songs1, i);
+                    setMediaPlayer(items1, download_songs1, i, durations);
                 }
                 else{
                     i--;
-                    setMediaPlayer(items1, download_songs1, i);
+                    setMediaPlayer(items1, download_songs1, i, durations);
                 }
             }
         });

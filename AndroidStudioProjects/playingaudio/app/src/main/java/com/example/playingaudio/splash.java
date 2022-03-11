@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ public class splash extends AppCompatActivity {
     ArrayList<File> items = new ArrayList<>();
     ArrayList<File> filtered_items = new ArrayList<>();
     String[] download_songs;
+    String[] durations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,37 @@ public class splash extends AppCompatActivity {
                                     break;
                                 }
                             }
+                        }
+                        durations = new String[filtered_items.size()];
+                        for(int m = 0; m<filtered_items.size(); m++){
+                            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+                            mmr.setDataSource(filtered_items.get(m).getAbsolutePath());
+                            String dur = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+
+                            Long time = Long.parseLong(dur);
+                            String finalTimerString = "";
+                            String secondsString = "";
+
+                            // Convert total duration into time
+                            int hours = (int) (time / (1000 * 60 * 60));
+                            int minutes = (int) (time % (1000 * 60 * 60)) / (1000 * 60);
+                            int seconds = (int) ((time % (1000 * 60 * 60)) % (1000 * 60) / 1000);
+
+                            // Add hours if there
+                            if (hours > 0) {
+                                finalTimerString = hours + ":";
+                            }
+
+                            // Prepending 0 to seconds if it is one digit
+                            if (seconds < 10) {
+                                secondsString = "0" + seconds;
+                            } else {
+                                secondsString = "" + seconds;
+                            }
+
+                            finalTimerString = finalTimerString + minutes + ":" + secondsString;
+
+                            durations[m] = finalTimerString;
                         }
                         for(int k=0; k<download_songs.length; k++){
                             download_songs[k] = download_songs[k].replace(".mp3", "");
@@ -77,6 +110,7 @@ public class splash extends AppCompatActivity {
                     Intent intent = new Intent(splash.this, list_of_songs.class);
                     intent.putExtra("song", filtered_items);
                     intent.putExtra("converted", download_songs);
+                    intent.putExtra("duration", durations);
                     startActivity(intent);
                 }
             }
