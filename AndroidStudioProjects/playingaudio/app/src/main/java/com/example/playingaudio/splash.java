@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,6 +29,7 @@ public class splash extends AppCompatActivity {
     ArrayList<File> filtered_items = new ArrayList<>();
     String[] download_songs;
     String[] durations;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,8 @@ public class splash extends AppCompatActivity {
                             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
                             mmr.setDataSource(filtered_items.get(m).getAbsolutePath());
                             String dur = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+
+
 
                             Long time = Long.parseLong(dur);
                             String finalTimerString = "";
