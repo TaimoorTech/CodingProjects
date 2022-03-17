@@ -18,11 +18,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/b_navigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
+        android:background="#F3ECEC"
         app:backgroundTint="@color/teal_700"
-        app:itemPaddingBottom="20dp"
         app:itemActiveIndicatorStyle="@style/MaterialAlertDialog.Material3.Body.Text"
+        app:itemPaddingBottom="20dp"
         app:itemTextAppearanceActive="@color/purple_200"
         app:menu="@menu/menu" />
 
