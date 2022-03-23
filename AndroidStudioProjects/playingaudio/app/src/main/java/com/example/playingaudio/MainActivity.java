@@ -3,12 +3,16 @@ package com.example.playingaudio;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 
 import android.net.Uri;
@@ -39,6 +43,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView timing_of_song;
     private SeekBar seekBar;
     private TextView textView;
     private MediaPlayer mediaPlayer;
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView previous;
     private SurfaceView surfaceView;
     ArrayList<File> items1 = new ArrayList<>();
+    String[] durations;
     String[] download_songs1;
     public int i;
     String var;
@@ -57,19 +63,34 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle toggle;
     ImageView three_lines;
+    ImageView pic_of_song;
+
     @Override
     public void onBackPressed() {
         mediaPlayer.stop();
         super.onBackPressed();
     }
 
-    protected void setMediaPlayer(ArrayList<File> item, String[] downloads, int pos){
+    protected void setMediaPlayer(ArrayList<File> item, String[] downloads, int pos,
+                                  String[] tm ){
         i = pos;
         if (i == item.size()) {
             i = 0;
         }
         var = downloads[i];
         textView.setText(var);
+        timing_of_song.setText(tm[i]);
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(items1.get(i).getAbsolutePath());
+        byte[] pic_data = mmr.getEmbeddedPicture();
+        if(pic_data != null){
+            Bitmap image = BitmapFactory.decodeByteArray(pic_data, 0, pic_data.length);
+            pic_of_song.setImageBitmap(image);
+        }
+        else{
+            pic_of_song.setImageResource(R.drawable.music);
+        }
+
         mediaPlayer2.pause();
 
         Uri uri = Uri.parse(item.get(i).toString());
@@ -84,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCompletion(MediaPlayer mp) {
                 i++;
                 play.setImageResource(R.drawable.pause);
-                setMediaPlayer(item, downloads, i);
+                setMediaPlayer(item, downloads, i, tm);
             }
         });
     }
@@ -92,6 +113,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        next = findViewById(R.id.next);
+        previous = findViewById(R.id.previous);
+        back = findViewById(R.id.back);
+        ahead = findViewById(R.id.ahead);
+        play = findViewById(R.id.imageView);
+        seekBar = findViewById(R.id.seekBar);
+        textView = findViewById(R.id.textView);
+        timing_of_song = findViewById(R.id.timing);
+        pic_of_song = findViewById(R.id.imageView2);
 
 
         navigationView = findViewById(R.id.navmenu);
@@ -113,8 +144,10 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent2 = getIntent();
         Bundle bundle1 = intent2.getExtras();
+
         items1 = (ArrayList) bundle1.getParcelableArrayList("arraylist");
         download_songs1 = intent2.getStringArrayExtra("list");
+        durations = intent2.getStringArrayExtra("dur");
         i = intent2.getIntExtra("position", 0);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -127,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this, list_of_songs.class);
                         intent.putExtra("song", items1);
                         intent.putExtra("converted", download_songs1);
+                        intent.putExtra("duration", durations);
                         startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -161,16 +195,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        next = findViewById(R.id.next);
-        previous = findViewById(R.id.previous);
-        back = findViewById(R.id.back);
-        ahead = findViewById(R.id.ahead);
-        play = findViewById(R.id.imageView);
-        seekBar = findViewById(R.id.seekBar);
-        textView = findViewById(R.id.textView);
-
         var = download_songs1[i];
         textView.setText(var);
+        timing_of_song.setText(durations[i]);
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(items1.get(i).getAbsolutePath());
+        byte[] pic_data = mmr.getEmbeddedPicture();
+        if(pic_data != null){
+            Bitmap image = BitmapFactory.decodeByteArray(pic_data, 0, pic_data.length);
+            pic_of_song.setImageBitmap(image);
+        }
+        else{
+            pic_of_song.setImageResource(R.drawable.music);
+        }
 
         try {
             mediaPlayer2.prepare();
@@ -180,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
         mediaPlayer2.setLooping(true);
         mediaPlayer2.start();
-        setMediaPlayer(items1, download_songs1, i);
+        setMediaPlayer(items1, download_songs1, i, durations);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.stop();
                 play.setImageResource(R.drawable.pause);
                 i++;
-                setMediaPlayer(items1, download_songs1, i);
+                setMediaPlayer(items1, download_songs1, i, durations);
             }
         });
         previous.setOnClickListener(new View.OnClickListener() {
@@ -232,11 +269,11 @@ public class MainActivity extends AppCompatActivity {
                 play.setImageResource(R.drawable.pause);
                 if(i == 0){
                     i =  download_songs1.length - 1;
-                    setMediaPlayer(items1, download_songs1, i);
+                    setMediaPlayer(items1, download_songs1, i, durations);
                 }
                 else{
                     i--;
-                    setMediaPlayer(items1, download_songs1, i);
+                    setMediaPlayer(items1, download_songs1, i, durations);
                 }
             }
         });

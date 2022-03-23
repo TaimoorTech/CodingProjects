@@ -204,23 +204,55 @@ public class java_newpractices {
 //        System.out.println("France: " + FRANCE);
 
 //        Tag Content Extractor
-        Scanner sc = new Scanner(System.in);
-        Pattern p = Pattern.compile("<([a-zA-Z0-9]+)>([A-Za-z0-9[ ]]+)</([a-zA-Z0-9]+)>");
-        int n = sc.nextInt();
-        sc.nextLine();
-        for( int i=0;i<n;i++){
-            String s = sc.nextLine();
-            Matcher m = p.matcher(s);
-            if(m.find()){
-                if(m.group(1).equals(m.group(3))){
-                    System.out.println(m.group(2));
-                }
-                else{
-                    System.out.println("None");
-                }
-            }
-        }
+//        Scanner sc = new Scanner(System.in);
+//        Pattern p = Pattern.compile("<([a-zA-Z0-9]+)>([A-Za-z0-9[ ]]+)</([a-zA-Z0-9]+)>");
+//        int n = sc.nextInt();
+//        sc.nextLine();
+//        for( int i=0;i<n;i++){
+//            String s = sc.nextLine();
+//            Matcher m = p.matcher(s);
+//            if(m.find()){
+//                if(m.group(1).equals(m.group(3))){
+//                    System.out.println(m.group(2));
+//                }
+//                else{
+//                    System.out.println("None");
+//                }
+//            }
+//        }
 
+    // Java Output Formatting
+//        Scanner sc = new Scanner(System.in);
+//        String s = sc.nextLine();
+//        String[] n = s.split(" ");
+//        System.out.println("================================");
+//        for(int j = 0; j<3; j++){
+//            String l = n[0];
+//            int i = Integer.parseInt(n[1]);
+//            String a = String.format("%03d", i);
+//            String answer = l + " ".repeat(l.length() - 3) + a;
+//            System.out.printf(answer+"\n");
+//        }
+//        System.out.println("================================");
+
+
+        // Java Big Decimal
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        List<String> l = new ArrayList<>();
+        List<Float> l1 = new ArrayList<>();
+        for(int i = 0; i<num; i++){
+            String st = sc.next();
+            l.add(st);
+        }
+        for(int i = 0; i<num; i++){
+            l1.add(Float.parseFloat(l.get(i)));
+        }
+        Collections.sort(l1, Collections.reverseOrder());
+
+        for (String s: l) {
+            System.out.println(s);
+        }
 
     }
 }
