@@ -1,8 +1,11 @@
 package com.example.Photomanagementsystem;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -41,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 loadFragment(fragment);
+            }
+        });
+
+        navigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
+            @Override
+            public void onReselectItem(MeowBottomNavigation.Model item) {
+
             }
         });
 
