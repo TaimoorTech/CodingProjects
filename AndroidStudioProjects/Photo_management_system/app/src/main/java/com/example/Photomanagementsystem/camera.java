@@ -32,16 +32,16 @@ public class camera extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        camera_img = getView().findViewById(R.id.camera_upload_image);
-        opening_camera_button = getView().findViewById(R.id.open_camera);
+//        camera_img = getView().findViewById(R.id.camera_upload_image);
+//        opening_camera_button = getView().findViewById(R.id.open_camera);
 
-        opening_camera_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent opn_cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                getActivity().startActivityForResult(opn_cam, CAMERA_REQUEST_CODE);
-            }
-        });
+//        opening_camera_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent opn_cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                getActivity().startActivityForResult(opn_cam, CAMERA_REQUEST_CODE);
+//            }
+//        });
 
     }
 
@@ -51,6 +51,30 @@ public class camera extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_camera, container, false);
+        View root = inflater.inflate(R.layout.fragment_camera, container, false);
+
+        camera_img = (ImageView) root.findViewById(R.id.camera_upload_image);
+        opening_camera_button = (Button) root.findViewById(R.id.open_camera);
+
+        opening_camera_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent opn_cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(opn_cam, CAMERA_REQUEST_CODE);
+            }
+        });
+        return root;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            if (requestCode == CAMERA_REQUEST_CODE){
+                Bitmap img = (Bitmap) (data.getExtras().get("data"));
+                camera_img.setImageBitmap(img);
+            }
+        }
     }
 }
