@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        navigation.show(1, true);
+        navigation.show(2, true);
     }
 
     private void loadFragment(Fragment fragment){
