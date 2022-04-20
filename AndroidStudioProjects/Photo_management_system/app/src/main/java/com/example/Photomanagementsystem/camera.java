@@ -31,21 +31,7 @@ public class camera extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-//        camera_img = getView().findViewById(R.id.camera_upload_image);
-//        opening_camera_button = getView().findViewById(R.id.open_camera);
-
-//        opening_camera_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent opn_cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                getActivity().startActivityForResult(opn_cam, CAMERA_REQUEST_CODE);
-//            }
-//        });
-
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
