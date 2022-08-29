@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class recycler_home_adapter extends RecyclerView.Adapter<recycler_home_adapter.holder> {
 
     ArrayList<Uri> image_data = new ArrayList<>();
-
     public recycler_home_adapter(ArrayList<Uri> data) {
         this.image_data = data;
     }
@@ -31,12 +30,12 @@ public class recycler_home_adapter extends RecyclerView.Adapter<recycler_home_ad
     }
 
     @Override
-    public void onBindViewHolder(@NonNull recycler_home_adapter.holder holder, int position) {
+    public void onBindViewHolder(@NonNull holder holder, int position) {
         Picasso.get()
                 .load(image_data.get(position))
                 .resize(400,400)
                 .centerCrop()
-                .into(holder.display_image);
+                .into(holder.item_view_image);
     }
 
     @Override
@@ -44,11 +43,11 @@ public class recycler_home_adapter extends RecyclerView.Adapter<recycler_home_ad
         return image_data.size();
     }
 
-     class holder extends RecyclerView.ViewHolder{
-        ImageView display_image;
+     public class holder extends RecyclerView.ViewHolder{
+        private ImageView item_view_image;
         public holder(@NonNull View itemView) {
             super(itemView);
-            display_image = itemView.findViewById(R.id.item_view_image);
+            item_view_image = itemView.findViewById(R.id.item_view_image);
         }
     }
 }

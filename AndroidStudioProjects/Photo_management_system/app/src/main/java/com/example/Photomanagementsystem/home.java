@@ -14,12 +14,14 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 
 
 public class home extends Fragment {
     ArrayList<Uri> image_uris = new ArrayList<>();
+
     public home() {
         // Required empty public constructor
     }
@@ -33,40 +35,40 @@ public class home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        assert container != null;
-        Context context = container.getContext();
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        String[] Projections = new String[]{
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.SIZE,
-                MediaStore.Images.Media.DATE_MODIFIED
-        };
-        String Selection = null;
-        String[] Selection_args= null;
-        String order_by= null;
-        Uri content_uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        Cursor cursor = context.getContentResolver().query(content_uri, Projections, Selection
-        , Selection_args, order_by);
-        if(cursor != null){
-            cursor.moveToPosition(0);
-        }
-        while (true){
 
-            long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
-            Uri image_uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
-            image_uris.add(image_uri);
-            if(!cursor.isLast()){
-                cursor.moveToNext();
-            }
-            else{
-                break;
-            }
-        }
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView recyclerView = root.findViewById(R.id.recycle_view_1);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
-        recycler_home_adapter homeAdapter = new recycler_home_adapter(image_uris);
-        recyclerView.setAdapter(homeAdapter);
+        String[] projections = new String[]{
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.SIZE,
+                MediaStore.Images.Media.DATE_MODIFIED,
+
+        };
+        String selection = null;
+        String selection_args[]= null;
+        String order_by= MediaStore.Images.Media.DATE_MODIFIED;
+        Uri content_uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        Cursor cursor = getActivity().getContentResolver().query(content_uri, projections, selection,
+                selection_args, order_by);
+        if(cursor!=null){
+            cursor.moveToPosition(0);
+            while(true){
+                long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID));
+                Uri image_uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                image_uris.add(image_uri);
+                if(!cursor.isLast())
+                    cursor.moveToNext();
+                else
+                    break;
+
+            }
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+            recycler_home_adapter homeAdapter = new recycler_home_adapter(image_uris);
+            recyclerView.setAdapter(homeAdapter);
+        }
+
+
         return root;
     }
 }
