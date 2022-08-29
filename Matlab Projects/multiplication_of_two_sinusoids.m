@@ -1,0 +1,13 @@
+%t=-10:15;
+%y1=(2*(exp(sym(1)).^t)).*(t>=-5&t<=0);
+%y2=(-t+2).*(t>=0&t<=10);
+%y=y1+y2;
+%w=cos(30*t);
+%%plot(t,v);
+t=-0.5:0.5;
+x=cos(pi*t).*(t>=-0.5&t<=0.5);
+function[y,n]=sigshift(x,n,k)
+n=n+k;
+y=x;
+plot(t,y);
+end

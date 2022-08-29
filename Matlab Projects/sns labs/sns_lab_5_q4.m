@@ -1,0 +1,15 @@
+t=-20:20;
+ramp=t.*(t>=0);
+mu=5;
+s=2;
+guass=exp(-0.5*((r-mu)/s).^2)./(s*sqrt(2*pi));
+u=conv(ramp, guass);
+subplot(2,2,1), stem(r);
+title('RAMP');
+grid on;
+subplot(2,2,2), stem(g);
+title('GUASS');
+grid on;
+subplot(2,2,3), stem(u);
+title('CONVULATED');
+grid on;

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="800dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Who we are?"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:fontFamily="@font/brawler"
+                android:text="We, the team of the “World of Electronics” are very glad to announce the next level E-shop and experience of home shopping. The technology is evolving very rapidly and we should progress with it to make our lifestyle updated and easy. We are here to introduce electronic shop with just one click away.
+\n\nNow, you don’t need to waste your precious time in wandering in markets. Vast variety of electronics items are available with their specifications and preview in most reasonable price in just one app. We also have shop to deal with customers who are comfortable with physical shopping rather than virtual shopping. We believe in updated technology and we always provide you value what you deserve with our next generation e-commerce app.
+\n\nSo, Sign up for free and have a tour of “World of Electronics”. We assure that you will never regret after getting into the app one time. Have a good day!!"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="500dp"
+                android:layout_marginLeft="50dp"
+                android:text="Where is our shop located?"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/location_map"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="500dp"
+                android:layout_marginLeft="250dp"
+                android:src="@drawable/ic_baseline_location_24" />
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

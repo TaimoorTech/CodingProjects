@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+    <item android:title="Home"
+        android:id="@+id/home"
+        android:iconTint="@color/black"
+        android:icon="@drawable/ic_baseline_home_24"
+        />
+    </group>
+
+    <item android:title="Types of Items">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:title="TV"
+                android:id="@+id/tv"
+                android:iconTint="@color/black"
+                android:icon="@drawable/ic_tv_24"
+                />
+            <item
+                android:title="Keyboard"
+                android:id="@+id/keyboard"
+                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_keyboard_24"
+                />
+            <item
+                android:title="Mouse"
+                android:id="@+id/mouse"
+                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_mouse_24"
+                />
+        </group>
+        </menu>
+    </item>
+    <item android:title="More">
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:title="About us"
+                android:id="@+id/about_us"
+                android:iconTint="@color/black"
+                android:icon="@drawable/ic_baseline_info_24"
+                />
+        </group>
+        </menu>
+    </item>
+
+
+
+</menu>

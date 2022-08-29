@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android">
+    android:insertTop="0dp"
+    android:inserLeft="0dp"
+    android:insertRight="0dp"
+    android:insertBottom="0dp">
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        android:id="@+id/rectangle">
+        <gradient
+            android:endColor="#517fa4"
+            android:startColor="#243949"
+            android:angle="90" >
+        </gradient>
+    </shape>
+</inset>

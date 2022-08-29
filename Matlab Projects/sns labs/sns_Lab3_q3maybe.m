@@ -1,0 +1,17 @@
+t = 0:0.0001:1;
+t1 = 0:0.01:1;
+t2=0:0.05:1;
+t3=0:0.1:1;
+x=sin(20*pi*t);
+x1=sin(20*pi*t1);
+x2=sin(20*pi*t2);
+x3=sin(20*pi*t3);
+subplot(3,2,1), plot(t,x);
+subplot(3,2,2) , stem(t1,x1);
+subplot(3,2,3) , stem(t2,x2);
+subplot(3,2,4) , stem(t3,x3);
+rx1 = spline(t1,x1,t);
+rx2 = spline(t2,x2,t);
+rx3 = spline(t3,x3,t);
+subplot(3,2,5) , plot(t,rx1);
+subplot(3,2,6) , plot(t,rx2);
